@@ -15,6 +15,8 @@
         <module>ruoyi-job</module>
         <module>ruoyi-system</module>
         <module>ruoyi-workflow</module>
+        <module>shopping-admin</module>
+        <module>shopping-mobile</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>
