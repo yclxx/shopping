@@ -25,37 +25,36 @@ public class ProductImgBo extends BaseEntity {
     /**
      * ID
      */
-    @NotNull(message = "ID不能为空", groups = { EditGroup.class })
+    @NotNull(message = "ID不能为空", groups = {EditGroup.class})
     private Long id;
 
     /**
      * 商品
      */
-    @NotNull(message = "商品不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "商品不能为空", groups = {AddGroup.class, EditGroup.class})
     private Long productId;
 
     /**
      * 图片
      */
-    @NotBlank(message = "图片不能为空", groups = { AddGroup.class, EditGroup.class })
-    private String imgSrc;
+    @NotBlank(message = "图片不能为空", groups = {AddGroup.class, EditGroup.class})
+    private Long img;
 
     /**
      * 图片归属
      */
-    @NotBlank(message = "图片归属不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "图片归属不能为空", groups = {AddGroup.class, EditGroup.class})
     private String imgAttribution;
 
     /**
      * 状态
      */
-    @NotBlank(message = "状态不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "状态不能为空", groups = {AddGroup.class, EditGroup.class})
     private String status;
 
     /**
      * 排序
      */
     private Long sort;
-
 
 }

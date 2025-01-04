@@ -42,7 +42,7 @@ public class ProductAttrValue extends TenantEntity {
     /**
      * 图片
      */
-    private String img;
+    private Long img;
 
     /**
      * 售价

@@ -44,7 +44,7 @@ public class ProductAttrValueBo extends BaseEntity {
      * 图片
      */
     @NotBlank(message = "图片不能为空", groups = { AddGroup.class, EditGroup.class })
-    private String img;
+    private Long img;
 
     /**
      * 售价

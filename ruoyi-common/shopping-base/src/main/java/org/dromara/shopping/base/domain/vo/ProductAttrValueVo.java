@@ -52,7 +52,7 @@ public class ProductAttrValueVo implements Serializable {
      * 图片
      */
     @ExcelProperty(value = "图片")
-    private String img;
+    private Long img;
 
     /**
      * 图片Url

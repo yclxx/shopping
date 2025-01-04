@@ -53,9 +53,9 @@
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column label="ID" align="center" prop="id" v-if="true" />
         <el-table-column label="商品" align="center" prop="productId" />
-        <el-table-column label="图片" align="center" prop="imgSrcUrl" width="100">
+        <el-table-column label="图片" align="center" prop="imgUrl" width="100">
           <template #default="scope">
-            <image-preview :src="scope.row.imgSrcUrl" :width="50" :height="50" />
+            <image-preview :src="scope.row.imgUrl" :width="50" :height="50" />
           </template>
         </el-table-column>
         <el-table-column label="图片归属" align="center" prop="imgAttribution">
@@ -99,8 +99,8 @@
     <!-- 添加或修改商品图片对话框 -->
     <el-dialog :title="dialog.title" v-model="dialog.visible" width="500px" append-to-body>
       <el-form ref="productImgFormRef" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="图片" prop="imgSrc">
-          <image-upload v-model="form.imgSrc" />
+        <el-form-item label="图片" prop="img">
+          <image-upload v-model="form.img" />
         </el-form-item>
         <el-form-item label="图片归属" prop="imgAttribution">
           <el-radio-group v-model="form.imgAttribution">
@@ -153,7 +153,7 @@
   const initFormData : ProductImgForm = {
     id: undefined,
     productId: undefined,
-    imgSrc: undefined,
+    img: undefined,
     imgAttribution: undefined,
     status: undefined,
     sort: undefined,
@@ -176,7 +176,7 @@
       productId: [
         { required: true, message: "商品不能为空", trigger: "change" }
       ],
-      imgSrc: [
+      img: [
         { required: true, message: "图片不能为空", trigger: "blur" }
       ],
       imgAttribution: [

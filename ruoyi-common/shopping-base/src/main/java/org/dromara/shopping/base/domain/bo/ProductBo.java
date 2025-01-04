@@ -38,7 +38,7 @@ public class ProductBo extends BaseEntity {
      * 商品图片
      */
     @NotBlank(message = "商品图片不能为空", groups = { AddGroup.class, EditGroup.class })
-    private String productImg;
+    private Long productImg;
 
     /**
      * 商品类型

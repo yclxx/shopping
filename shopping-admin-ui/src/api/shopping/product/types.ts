@@ -2,82 +2,87 @@ export interface ProductVO {
   /**
    * 商品ID
    */
-  productId: string | number;
+  productId : string | number;
 
   /**
    * 商品名称
    */
-  productName: string;
+  productName : string;
 
   /**
    * 商品图片
    */
-  productImg: string;
+  productImg : string | number;
+
+  /**
+   * 商品图片Url
+   */
+  productImgUrl : string;
 
   /**
    * 商品类型
    */
-  productType: string;
+  productType : string;
 
   /**
    * 状态
    */
-  status: string;
+  status : string;
 
   /**
    * 排序
    */
-  sort: number;
+  sort : number;
 
   /**
    * 被搜索
    */
-  searchStatus: string;
+  searchStatus : string;
 
   /**
    * 显示首页
    */
-  showIndex: string;
+  showIndex : string;
 
   /**
    * 展示开始时间
    */
-  showStartDate: string;
+  showStartDate : string;
 
   /**
    * 展示结束时间
    */
-  showEndDate: string;
+  showEndDate : string;
 
   /**
    * 售卖开始时间
    */
-  sellStartDate: string;
+  sellStartDate : string;
 
   /**
    * 售卖结束时间
    */
-  sellEndDate: string;
+  sellEndDate : string;
 
   /**
    * 售价
    */
-  price: number;
+  price : number;
 
   /**
    * 原价
    */
-  otPrice: number;
+  otPrice : number;
 
   /**
    * 创建时间
    */
-  createTime: string;
+  createTime : string;
 
   /**
    * 更新时间
    */
-  updateTime: string;
+  updateTime : string;
 
 }
 
@@ -85,72 +90,72 @@ export interface ProductForm extends BaseEntity {
   /**
    * 商品ID
    */
-  productId?: string | number;
+  productId ?: string | number;
 
   /**
    * 商品名称
    */
-  productName?: string;
+  productName ?: string;
 
   /**
    * 商品图片
    */
-  productImg?: string;
+  productImg ?: string | number;
 
   /**
    * 商品类型
    */
-  productType?: string;
+  productType ?: string;
 
   /**
    * 状态
    */
-  status?: string;
+  status ?: string;
 
   /**
    * 排序
    */
-  sort?: number;
+  sort ?: number;
 
   /**
    * 被搜索
    */
-  searchStatus?: string;
+  searchStatus ?: string;
 
   /**
    * 显示首页
    */
-  showIndex?: string;
+  showIndex ?: string;
 
   /**
    * 展示开始时间
    */
-  showStartDate?: string;
+  showStartDate ?: string;
 
   /**
    * 展示结束时间
    */
-  showEndDate?: string;
+  showEndDate ?: string;
 
   /**
    * 售卖开始时间
    */
-  sellStartDate?: string;
+  sellStartDate ?: string;
 
   /**
    * 售卖结束时间
    */
-  sellEndDate?: string;
+  sellEndDate ?: string;
 
   /**
    * 售价
    */
-  price?: number;
+  price ?: number;
 
   /**
    * 原价
    */
-  otPrice?: number;
+  otPrice ?: number;
 
 }
 
@@ -159,33 +164,30 @@ export interface ProductQuery extends PageQuery {
   /**
    * 商品ID
    */
-  productId?: string | number;
+  productId ?: string | number;
 
   /**
    * 商品名称
    */
-  productName?: string;
+  productName ?: string;
 
   /**
    * 商品类型
    */
-  productType?: string;
+  productType ?: string;
 
   /**
    * 状态
    */
-  status?: string;
+  status ?: string;
 
   /**
    * 显示首页
    */
-  showIndex?: string;
+  showIndex ?: string;
 
-    /**
-     * 日期范围参数
-     */
-    params?: any;
+  /**
+   * 日期范围参数
+   */
+  params ?: any;
 }
-
-
-

@@ -2,76 +2,76 @@ export interface ProductAttrValueVO {
   /**
    * 主键
    */
-  id: string | number;
+  id : string | number;
 
   /**
    * 商品
    */
-  productId: string | number;
+  productId : string | number;
 
   /**
    * 商品属性索引值 (attr_value|attr_value[|....])
    */
-  sku: string;
+  sku : string;
 
   /**
    * 图片
    */
-  img: string;
+  img : string | number;
 
   /**
    * 图片Url
    */
-  imgUrl: string;
+  imgUrl : string;
   /**
    * 售价
    */
-  price: number;
+  price : number;
 
   /**
    * 成本价
    */
-  cost: number;
+  cost : number;
 
   /**
    * 原价
    */
-  otPrice: number;
+  otPrice : number;
 
   /**
    * 总库存
    */
-  totalStock: number;
+  totalStock : number;
 
   /**
    * 销量
    */
-  sales: number;
+  sales : number;
 
   /**
    * 剩余库存
    */
-  stock: number;
+  stock : number;
 
   /**
    * attr_values 创建更新时的属性对应
    */
-  attrValue: string;
+  attrValue : string;
 
   /**
    * 状态
    */
-  status: string;
+  status : string;
 
   /**
    * 创建时间
    */
-  createTime: string;
+  createTime : string;
 
   /**
    * 更新时间
    */
-  updateTime: string;
+  updateTime : string;
 
 }
 
@@ -79,62 +79,62 @@ export interface ProductAttrValueForm extends BaseEntity {
   /**
    * 主键
    */
-  id?: string | number;
+  id ?: string | number;
 
   /**
    * 商品
    */
-  productId?: string | number;
+  productId ?: string | number;
 
   /**
    * 商品属性索引值 (attr_value|attr_value[|....])
    */
-  sku?: string;
+  sku ?: string;
 
   /**
    * 图片
    */
-  img?: string;
+  img ?: string | number;
 
   /**
    * 售价
    */
-  price?: number;
+  price ?: number;
 
   /**
    * 成本价
    */
-  cost?: number;
+  cost ?: number;
 
   /**
    * 原价
    */
-  otPrice?: number;
+  otPrice ?: number;
 
   /**
    * 总库存
    */
-  totalStock?: number;
+  totalStock ?: number;
 
   /**
    * 销量
    */
-  sales?: number;
+  sales ?: number;
 
   /**
    * 剩余库存
    */
-  stock?: number;
+  stock ?: number;
 
   /**
    * attr_values 创建更新时的属性对应
    */
-  attrValue?: string;
+  attrValue ?: string;
 
   /**
    * 状态
    */
-  status?: string;
+  status ?: string;
 
 }
 
@@ -143,28 +143,25 @@ export interface ProductAttrValueQuery extends PageQuery {
   /**
    * 商品
    */
-  productId?: string | number;
+  productId ?: string | number;
 
   /**
    * 商品属性索引值 (attr_value|attr_value[|....])
    */
-  sku?: string;
+  sku ?: string;
 
   /**
    * attr_values 创建更新时的属性对应
    */
-  attrValue?: string;
+  attrValue ?: string;
 
   /**
    * 状态
    */
-  status?: string;
+  status ?: string;
 
-    /**
-     * 日期范围参数
-     */
-    params?: any;
+  /**
+   * 日期范围参数
+   */
+  params ?: any;
 }
-
-
-

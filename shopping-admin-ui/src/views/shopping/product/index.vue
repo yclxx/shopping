@@ -135,20 +135,34 @@
         v-model:limit="queryParams.pageSize" @pagination="getList" />
     </el-card>
     <!-- 添加或修改商品信息对话框 -->
-    <el-dialog :title="dialog.title" v-model="dialog.visible" width="500px" append-to-body>
+    <el-dialog :title="dialog.title" v-model="dialog.visible" width="1200px" append-to-body>
       <el-form ref="productFormRef" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="商品名称" prop="productName">
-          <el-input v-model="form.productName" placeholder="请输入商品名称" />
-        </el-form-item>
-        <el-form-item label="商品图片" prop="productImg">
-          <el-input v-model="form.productImg" placeholder="请输入商品图片" />
-        </el-form-item>
-        <el-form-item label="商品类型" prop="productType">
-          <el-select v-model="form.productType" placeholder="请选择商品类型">
-            <el-option v-for="dict in t_product_type" :key="dict.value" :label="dict.label"
-              :value="dict.value"></el-option>
-          </el-select>
-        </el-form-item>
+        <el-row>
+          <el-col :span="8">
+            <el-form-item label="商品图片" prop="productImg">
+              <image-upload v-model="form.productImg" :limit="1" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="商品名称" prop="productName">
+              <el-input v-model="form.productName" placeholder="请输入商品名称" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="商品类型" prop="productType">
+              <el-select v-model="form.productType" style="width: 100%;" placeholder="请选择商品类型">
+                <el-option v-for="dict in t_product_type" :key="dict.value" :label="dict.label"
+                  :value="dict.value"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8"></el-col>
+          <el-col :span="8"></el-col>
+          <el-col :span="8"></el-col>
+          <el-col :span="8"></el-col>
+          <el-col :span="8"></el-col>
+          <el-col :span="8"></el-col>
+        </el-row>
         <el-form-item label="状态" prop="status">
           <el-radio-group v-model="form.status">
             <el-radio v-for="dict in sys_normal_disable" :key="dict.value" :value="dict.value">{{dict.label}}</el-radio>

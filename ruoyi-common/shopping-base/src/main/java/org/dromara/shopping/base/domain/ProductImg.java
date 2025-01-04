@@ -37,7 +37,7 @@ public class ProductImg extends TenantEntity {
     /**
      * 图片
      */
-    private String imgSrc;
+    private Long img;
 
     /**
      * 图片归属

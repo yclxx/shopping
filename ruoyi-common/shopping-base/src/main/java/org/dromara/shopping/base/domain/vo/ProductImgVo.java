@@ -46,13 +46,13 @@ public class ProductImgVo implements Serializable {
      * 图片
      */
     @ExcelProperty(value = "图片")
-    private String imgSrc;
+    private Long img;
 
     /**
      * 图片Url
      */
-    @Translation(type = TransConstant.OSS_ID_TO_URL, mapper = "imgSrc")
-    private String imgSrcUrl;
+    @Translation(type = TransConstant.OSS_ID_TO_URL, mapper = "img")
+    private String imgUrl;
     /**
      * 图片归属
      */
