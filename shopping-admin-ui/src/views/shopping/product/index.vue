@@ -135,72 +135,79 @@
         v-model:limit="queryParams.pageSize" @pagination="getList" />
     </el-card>
     <!-- 添加或修改商品信息对话框 -->
-    <el-dialog :title="dialog.title" v-model="dialog.visible" width="1200px" append-to-body>
-      <el-form ref="productFormRef" :model="form" :rules="rules" label-width="80px">
+    <el-dialog :title="dialog.title" v-model="dialog.visible" width="1400px" append-to-body>
+      <el-form ref="productFormRef" :model="form" :rules="rules" label-width="120px">
         <el-row>
           <el-col :span="8">
             <el-form-item label="商品图片" prop="productImg">
               <image-upload v-model="form.productImg" :limit="1" />
             </el-form-item>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="16">
             <el-form-item label="商品名称" prop="productName">
               <el-input v-model="form.productName" placeholder="请输入商品名称" />
             </el-form-item>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="商品类型" prop="productType">
+                  <el-select v-model="form.productType" style="width: 100%;" placeholder="请选择商品类型">
+                    <el-option v-for="dict in t_product_type" :key="dict.value" :label="dict.label"
+                      :value="dict.value"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="展示开始时间" prop="showStartDate">
+                  <el-date-picker clearable style="width: 100%;" v-model="form.showStartDate" type="datetime"
+                    value-format="YYYY-MM-DD HH:mm:ss" placeholder="请选择展示开始时间">
+                  </el-date-picker>
+                </el-form-item>
+                <el-form-item label="售卖开始时间" prop="sellStartDate">
+                  <el-date-picker clearable style="width: 100%;" v-model="form.sellStartDate" type="datetime"
+                    value-format="YYYY-MM-DD HH:mm:ss" placeholder="请选择售卖开始时间">
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="排序" prop="sort">
+                  <el-input v-model="form.sort" type="number" placeholder="请输入排序" />
+                </el-form-item>
+                <el-form-item label="展示结束时间" prop="showEndDate">
+                  <el-date-picker clearable style="width: 100%;" v-model="form.showEndDate" type="datetime"
+                    value-format="YYYY-MM-DD HH:mm:ss" :default-time="defaultTime" placeholder="请选择展示结束时间">
+                  </el-date-picker>
+                </el-form-item>
+                <el-form-item label="售卖结束时间" prop="sellEndDate">
+                  <el-date-picker clearable style="width: 100%;" v-model="form.sellEndDate" type="datetime"
+                    value-format="YYYY-MM-DD HH:mm:ss" :default-time="defaultTime" placeholder="请选择售卖结束时间">
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
           </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="8">
-            <el-form-item label="商品类型" prop="productType">
-              <el-select v-model="form.productType" style="width: 100%;" placeholder="请选择商品类型">
-                <el-option v-for="dict in t_product_type" :key="dict.value" :label="dict.label"
-                  :value="dict.value"></el-option>
-              </el-select>
+            <el-form-item label="状态" prop="status">
+              <el-radio-group v-model="form.status">
+                <el-radio v-for="dict in sys_normal_disable" :key="dict.value"
+                  :value="dict.value">{{dict.label}}</el-radio>
+              </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
+          <el-col :span="8">
+            <el-form-item label="显示首页" prop="showIndex">
+              <el-radio-group v-model="form.showIndex">
+                <el-radio v-for="dict in sys_yes_no" :key="dict.value" :value="dict.value">{{dict.label}}</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="被搜索" prop="searchStatus">
+              <el-radio-group v-model="form.searchStatus">
+                <el-radio v-for="dict in sys_yes_no" :key="dict.value" :value="dict.value">{{dict.label}}</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
         </el-row>
-        <el-form-item label="状态" prop="status">
-          <el-radio-group v-model="form.status">
-            <el-radio v-for="dict in sys_normal_disable" :key="dict.value" :value="dict.value">{{dict.label}}</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="排序" prop="sort">
-          <el-input v-model="form.sort" placeholder="请输入排序" />
-        </el-form-item>
-        <el-form-item label="被搜索" prop="searchStatus">
-          <el-radio-group v-model="form.searchStatus">
-            <el-radio v-for="dict in sys_yes_no" :key="dict.value" :value="dict.value">{{dict.label}}</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="显示首页" prop="showIndex">
-          <el-radio-group v-model="form.showIndex">
-            <el-radio v-for="dict in sys_yes_no" :key="dict.value" :value="dict.value">{{dict.label}}</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="展示开始时间" prop="showStartDate">
-          <el-date-picker clearable v-model="form.showStartDate" type="datetime" value-format="YYYY-MM-DD HH:mm:ss"
-            placeholder="请选择展示开始时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="展示结束时间" prop="showEndDate">
-          <el-date-picker clearable v-model="form.showEndDate" type="datetime" value-format="YYYY-MM-DD HH:mm:ss"
-            placeholder="请选择展示结束时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="售卖开始时间" prop="sellStartDate">
-          <el-date-picker clearable v-model="form.sellStartDate" type="datetime" value-format="YYYY-MM-DD HH:mm:ss"
-            placeholder="请选择售卖开始时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="售卖结束时间" prop="sellEndDate">
-          <el-date-picker clearable v-model="form.sellEndDate" type="datetime" value-format="YYYY-MM-DD HH:mm:ss"
-            placeholder="请选择售卖结束时间">
-          </el-date-picker>
-        </el-form-item>
         <el-form-item label="售价" prop="price">
           <el-input v-model="form.price" placeholder="请输入售价" />
         </el-form-item>
@@ -234,6 +241,8 @@
   const multiple = ref(true);
   const total = ref(0);
 
+  const defaultTime = new Date(2000, 1, 1, 23, 59, 59)
+
   const queryFormRef = ref<ElFormInstance>();
   const productFormRef = ref<ElFormInstance>();
 
@@ -247,10 +256,10 @@
     productName: undefined,
     productImg: undefined,
     productType: undefined,
-    status: undefined,
+    status: "0",
     sort: undefined,
-    searchStatus: undefined,
-    showIndex: undefined,
+    searchStatus: "Y",
+    showIndex: "Y",
     showStartDate: undefined,
     showEndDate: undefined,
     sellStartDate: undefined,
