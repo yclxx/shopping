@@ -14,9 +14,12 @@ import org.dromara.shopping.domain.Action;
 import org.dromara.shopping.domain.ProductAction;
 import org.dromara.shopping.domain.bo.ActionBo;
 import org.dromara.shopping.domain.vo.ActionVo;
+import org.dromara.shopping.mapper.ActionMapper;
 import org.dromara.shopping.service.IActionService;
+import org.dromara.shopping.service.ICouponService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,7 +34,6 @@ import java.util.List;
 public class ActionServiceImpl implements IActionService {
 
     private final ActionMapper baseMapper;
-    private final ProductActionMapper productActionMapper;
     private final ICouponService couponService;
 
     /**
@@ -107,19 +109,13 @@ public class ActionServiceImpl implements IActionService {
         if (!action.getStatus().equals("0")) throw new ServiceException("此批次已停用");
         LambdaQueryWrapper<ProductAction> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(ProductAction::getActionId, actionId);
-        // 通兑券条件处理
-        if (action.getCouponType().equals("1")) {
-            Long actionCount = productActionMapper.selectCount(queryWrapper);
-            if (actionCount <= 0) throw new ServiceException("此批次必须先绑定商品");
-        }
-        List<ProductAction> productActions = productActionMapper.selectList(queryWrapper);
         if (ObjectUtil.isNotEmpty(action.getCouponCount()) && !action.getCouponCount().equals(-1L)) {
             Long couponNumber = couponService.queryNumberByActionNo(action.getActionNo());
             couponNumber += number;
             if (couponNumber > action.getCouponCount()) throw new ServiceException("此批次已到达创建数量上限。");
-            couponService.addCoupon(action, number, productActions);
+            couponService.addCoupon(action, number, new ArrayList<>());
         } else {
-            couponService.addCoupon(action, number, productActions);
+            couponService.addCoupon(action, number, new ArrayList<>());
         }
         return true;
     }
@@ -127,21 +123,6 @@ public class ActionServiceImpl implements IActionService {
     public int updateActionProduct(List<Long> productIds, Long actionId, Integer type) {
         if (ObjectUtil.isEmpty(productIds)) throw new ServiceException("商品信息无效");
         if (ObjectUtil.isEmpty(actionId)) throw new ServiceException("此批次信息无效");
-        if (type.equals(1)) {
-            for (Long productId : productIds) {
-                ProductAction productAction = new ProductAction();
-                productAction.setProductId(productId);
-                productAction.setActionId(actionId);
-                productActionMapper.insert(productAction);
-            }
-        } else if (type.equals(0)) {
-            for (Long productId : productIds) {
-                LambdaQueryWrapper<ProductAction> wrapper = Wrappers.lambdaQuery();
-                wrapper.eq(ProductAction::getActionId, actionId);
-                wrapper.eq(ProductAction::getProductId, productId);
-                productActionMapper.delete(wrapper);
-            }
-        }
         return productIds.size();
     }
 
