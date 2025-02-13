@@ -18,6 +18,7 @@
         <module>shopping-admin</module>
         <module>shopping-mobile</module>
         <module>test</module>
+        <module>boss</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>
