@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.PageBlockColumnMapper">
+
+    <resultMap type="org.dromara.shopping.domain.PageBlockColumn" id="PageBlockColumnResult">
+    <result property="columnId" column="column_id"/>
+    <result property="blockId" column="block_id"/>
+    <result property="columnName" column="column_name"/>
+    <result property="columnComment" column="column_comment"/>
+    <result property="javaField" column="java_field"/>
+    <result property="isRequired" column="is_required"/>
+    <result property="htmlType" column="html_type"/>
+    <result property="dictType" column="dict_type"/>
+    <result property="sort" column="sort"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

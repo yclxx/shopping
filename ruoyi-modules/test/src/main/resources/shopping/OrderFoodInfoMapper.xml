@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.OrderFoodInfoMapper">
+
+    <resultMap type="org.dromara.shopping.domain.OrderFoodInfo" id="OrderFoodInfoResult">
+    <result property="number" column="number"/>
+    <result property="bizOrderId" column="biz_order_id"/>
+    <result property="orderBxNumber" column="order_bx_number"/>
+    <result property="bizBxOrderId" column="biz_bx_order_id"/>
+    <result property="userName" column="user_name"/>
+    <result property="ticketCode" column="ticket_code"/>
+    <result property="voucherId" column="voucher_id"/>
+    <result property="voucherStatus" column="voucher_status"/>
+    <result property="effectTime" column="effect_time"/>
+    <result property="expireTime" column="expire_time"/>
+    <result property="totalAmount" column="total_amount"/>
+    <result property="usedAmount" column="used_amount"/>
+    <result property="refundAmount" column="refund_amount"/>
+    <result property="orderStatus" column="order_status"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="productName" column="product_name"/>
+    <result property="itemId" column="item_id"/>
+    <result property="sellingPrice" column="selling_price"/>
+    <result property="officialPrice" column="official_price"/>
+    <result property="cusName" column="cus_name"/>
+    <result property="cusMobile" column="cus_mobile"/>
+    <result property="cusIdcard" column="cus_idcard"/>
+    <result property="chooseDate" column="choose_date"/>
+    <result property="chooseOutDate" column="choose_out_date"/>
+    </resultMap>
+    <select id="queryRefundListByOrder" resultMap="OrderFoodInfoResult">
+        SELECT ofi.*
+        FROM `t_order_food_info` ofi
+                 left join t_order o on ofi.number = o.number
+        where o.number is not null
+          and ofi.expire_time &lt; now()
+          and o.`status` = '2'
+          and ofi.voucher_status != 'USED'
+          and ofi.create_time &gt; '2024-06-11 00:00:00'
+    </select>
+    <select id="queryRefundListByHistoryOrder" resultMap="OrderFoodInfoResult">
+        SELECT ofi.*
+        FROM `t_order_food_info` ofi
+                 left join t_history_order o on ofi.number = o.number
+        where o.number is not null
+          and ofi.expire_time &lt; now()
+          and o.`status` = '2'
+          and ofi.voucher_status != 'USED'
+          and ofi.create_time &gt; '2024-06-11 00:00:00'
+    </select>
+
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.OrderUnionSendMapper">
+
+    <resultMap type="org.dromara.shopping.domain.OrderUnionSend" id="OrderUnionSendResult">
+    <result property="number" column="number"/>
+    <result property="prodTn" column="prod_tn"/>
+    <result property="prodTp" column="prod_tp"/>
+    <result property="bondSerlNo" column="bond_serl_no"/>
+    <result property="bondNo" column="bond_no"/>
+    <result property="bondEncNo" column="bond_enc_no"/>
+    <result property="effectDtTm" column="effect_dt_tm"/>
+    <result property="exprDtTm" column="expr_dt_tm"/>
+    <result property="cusIstr" column="cusIstr"/>
+    <result property="bondSt" column="bond_st"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.OrderTicketMapper">
+
+    <resultMap type="org.dromara.shopping.domain.OrderTicket" id="OrderTicketResult">
+        <result property="number" column="number"/>
+        <result property="productId" column="product_id"/>
+        <result property="sessionId" column="session_id"/>
+        <result property="lineId" column="line_id"/>
+        <result property="mobile" column="mobile"/>
+        <result property="ticketTime" column="ticket_time"/>
+        <result property="reservation" column="reservation"/>
+        <result property="price" column="price"/>
+        <result property="sellPrice" column="sell_price"/>
+        <result property="count" column="count"/>
+        <result property="userAddressId" column="user_address_id"/>
+        <result property="name" column="name"/>
+        <result property="tel" column="tel"/>
+        <result property="address" column="address"/>
+        <result property="addressInfo" column="address_info"/>
+        <result property="shopId" column="shop_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="shopAddress" column="shop_address"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="ticketNonsupport" column="ticket_nonsupport"/>
+        <result property="ticketInvoice" column="ticket_invoice"/>
+        <result property="ticketExpired" column="ticket_expired"/>
+        <result property="ticketAnyTime" column="ticket_any_time"/>
+        <result property="ticketChooseSeat" column="ticket_choose_seat"/>
+        <result property="ticketPostWay" column="ticket_post_way"/>
+        <result property="ticketPostage" column="ticket_postage"/>
+        <result property="logistics" column="logistics"/>
+        <result property="logisticsStatus" column="logistics_status"/>
+        <result property="logisticsCom" column="logistics_com"/>
+        <result property="productName" column="product_name"/>
+        <result property="sessionName" column="session_name"/>
+        <result property="lineName" column="line_name"/>
+    </resultMap>
+
+</mapper>

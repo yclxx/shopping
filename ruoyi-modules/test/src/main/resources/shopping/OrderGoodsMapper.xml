@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.OrderGoodsMapper">
+
+    <resultMap type="org.dromara.shopping.domain.OrderGoods" id="OrderGoodsResult">
+    <result property="number" column="number"/>
+    <result property="productId" column="product_id"/>
+    <result property="productName" column="product_name"/>
+    <result property="price" column="price"/>
+    <result property="sellPrice" column="sell_price"/>
+    <result property="count" column="count"/>
+    <result property="mobile" column="mobile"/>
+    <result property="userAddressId" column="user_address_id"/>
+    <result property="name" column="name"/>
+    <result property="tel" column="tel"/>
+    <result property="address" column="address"/>
+    <result property="addressInfo" column="address_info"/>
+    <result property="ticketPostage" column="ticket_postage"/>
+    <result property="logistics" column="logistics"/>
+    <result property="logisticsStatus" column="logistics_status"/>
+    <result property="logisticsCom" column="logistics_com"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="createBy" column="create_by"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="delFlag" column="del_flag"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="isActive" column="is_active"/>
+        <result property="receiveTime" column="receive_time"/>
+    </resultMap>
+    <select id="selectPageList" resultType="org.dromara.shopping.domain.vo.OrderGoodsVo">
+        select og.*,IFNULL(o.count, ho.count) count,IFNULL(o.status, ho.status) orderStatus,IFNULL(o.platform_key, ho.platform_key) platformKey,
+        IFNULL(o.product_img, ho.product_img) productImg,IFNULL(o.product_price, ho.product_price)
+        productPrice,IFNULL(o.item_price, ho.item_price) itemPrice
+        from t_order_goods og left join t_order o on og.number = o.number
+        left join t_history_order ho on og.number = ho.number
+        <where>
+            og.del_flag = '0'
+            <if test="bo.number != null and bo.number != ''">
+                and og.number = #{bo.number}
+            </if>
+            <if test="bo.productName != null and bo.productName != ''">
+                and og.product_name like CONCAT('%',#{bo.productName},'%')
+            </if>
+            <if test="bo.name != null and bo.name != ''">
+                and og.name = #{bo.name}
+            </if>
+            <if test="bo.tel != null and bo.tel != ''">
+                and og.tel = #{bo.tel}
+            </if>
+            <if test="bo.logistics != null and bo.logistics != ''">
+                and og.logistics = #{bo.logistics}
+            </if>
+            <if test="bo.logisticsStatus != null and bo.logisticsStatus != ''">
+                and og.logistics_status = #{bo.logisticsStatus}
+            </if>
+            <if test="bo.logisticsStatusList != null and bo.logisticsStatusList.size() > 0">
+                and og.logistics_status in
+                <foreach collection="bo.logisticsStatusList" item="logisticsStatus" open="(" separator="," close=")">
+                    #{logisticsStatus}
+                </foreach>
+            </if>
+            <if test="bo.orderStatus != null and bo.orderStatus != ''">
+                and (o.status = #{bo.orderStatus} or ho.status = #{bo.orderStatus})
+            </if>
+            <if test="bo.orderStatusList != null and bo.orderStatusList.size() > 0">
+                and (
+                o.status in
+                <foreach collection="bo.orderStatusList" item="orderStatus" open="(" separator="," close=")">
+                    #{orderStatus}
+                </foreach>
+                or ho.status in
+                <foreach collection="bo.orderStatusList" item="orderStatus" open="(" separator="," close=")">
+                    #{orderStatus}
+                </foreach>
+                )
+            </if>
+            <if test="bo.platformKey != null and bo.platformKey != ''">
+                and (o.platform_key = #{bo.platformKey} or ho.platform_key = #{bo.platformKey})
+            </if>
+            <if test="bo.params.beginCreateTime != null and bo.params.endCreateTime != null">
+                and og.create_time between #{bo.params.beginCreateTime} and #{bo.params.endCreateTime}
+            </if>
+            <if test="bo.productIds != null and bo.productIds.size() > 0">
+                and og.product_id in
+                <foreach collection="bo.productIds" item="productId" open="(" separator="," close=")">
+                    #{productId}
+                </foreach>
+            </if>
+            <if test="bo.queryStr != null and bo.queryStr != ''">
+                and (og.number = #{bo.queryStr} or og.product_name like CONCAT('%',#{bo.queryStr},'%') or og.logistics =
+                #{bo.queryStr} or og.mobile = #{bo.queryStr})
+            </if>
+            <if test="bo.supplier != null and bo.supplier != ''">
+                and (o.supplier = #{bo.supplier} or ho.supplier = #{bo.supplier})
+            </if>
+        </where>
+        order by og.create_time desc
+    </select>
+
+
+</mapper>

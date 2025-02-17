@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.PlatformChannelMapper">
+    <resultMap type="org.dromara.shopping.domain.PlatformChannel" id="PlatformChannelResult">
+    <result property="id" column="id"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="platformTitle" column="platform_title"/>
+    <result property="appId" column="app_id"/>
+    <result property="encryptAppId" column="encrypt_app_id"/>
+    <result property="secret" column="secret"/>
+    <result property="symmetricKey" column="symmetric_key"/>
+    <result property="rsaPrivateKey" column="rsa_private_key"/>
+    <result property="rsaPublicKey" column="rsa_public_key"/>
+    <result property="channel" column="channel"/>
+    <result property="merchantId" column="merchant_id"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+</mapper>

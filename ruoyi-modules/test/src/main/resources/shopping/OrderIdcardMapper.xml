@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.OrderIdcardMapper">
+
+    <resultMap type="org.dromara.shopping.domain.OrderIdcard" id="OrderIdcardResult">
+        <result property="orderCardId" column="order_card_id"/>
+        <result property="number" column="number"/>
+        <result property="name" column="name"/>
+        <result property="cardType" column="card_type"/>
+        <result property="idCard" column="id_card"/>
+        <result property="createBy" column="create_by"/>
+        <result property="orderType" column="order_type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+</mapper>
