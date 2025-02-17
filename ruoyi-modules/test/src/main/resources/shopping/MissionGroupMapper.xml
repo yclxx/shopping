@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.MissionGroupMapper">
+
+    <resultMap type="org.dromara.shopping.domain.MissionGroup" id="MissionGroupResult">
+        <result property="missionGroupId" column="mission_group_id"/>
+        <result property="missionGroupName" column="mission_group_name"/>
+        <result property="status" column="status"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="missionImg" column="mission_img"/>
+        <result property="missionBgImg" column="mission_bg_img"/>
+        <result property="regulationButton" column="regulation_button"/>
+        <result property="missionGroupUpid" column="mission_group_upid"/>
+        <result property="jdConvertRedPacket" column="jd_convert_red_packet"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="showCity" column="show_city"/>
+        <result property="convertValue" column="convert_value"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="startLuckyDay" column="start_lucky_day"/>
+        <result property="luckyDay" column="lucky_day"/>
+        <result property="probabilityType" column="probability_type"/>
+        <result property="probabilityCount" column="probability_count"/>
+        <result property="probabilityProductId" column="probability_product_id"/>
+    </resultMap>
+
+
+</mapper>

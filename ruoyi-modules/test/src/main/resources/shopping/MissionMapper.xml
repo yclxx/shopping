@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.MissionMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Mission" id="MissionResult">
+        <result property="missionId" column="mission_id"/>
+        <result property="missionGroupId" column="mission_group_id"/>
+        <result property="missionName" column="mission_name"/>
+        <result property="missionUpid" column="mission_upid"/>
+        <result property="status" column="status"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="missionTime" column="mission_time"/>
+        <result property="periodType" column="period_type"/>
+        <result property="missionImg" column="mission_img"/>
+        <result property="missionAwardType" column="mission_award_type"/>
+        <result property="awardExpiryType" column="award_expiry_type"/>
+        <result property="awardExpiryDate" column="award_expiry_date"/>
+        <result property="missionTotalQuota" column="mission_total_quota"/>
+        <result property="missionPeriodQuota" column="mission_period_quota"/>
+        <result property="userTotalQuota" column="user_total_quota"/>
+        <result property="userPeriodQuota" column="user_period_quota"/>
+        <result property="userCountDay" column="user_count_day"/>
+        <result property="userCountWeek" column="user_count_week"/>
+        <result property="userCountMonth" column="user_count_month"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="showIndex" column="show_index"/>
+        <result property="showCity" column="show_city"/>
+        <result property="showStartDate" column="show_start_date"/>
+        <result property="showEndDate" column="show_end_date"/>
+        <result property="showContentType" column="show_content_type"/>
+        <result property="showContent" column="show_content"/>
+        <result property="assignDate" column="assign_date"/>
+        <result property="weekDate" column="week_date"/>
+        <result property="toType" column="to_type"/>
+        <result property="appId" column="app_id"/>
+        <result property="url" column="url"/>
+        <result property="sort" column="sort"/>
+        <result property="missionType" column="mission_type"/>
+        <result property="missionAffiliation" column="mission_affiliation"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="assistanceTimeType" column="assistance_time_type"/>
+        <result property="assistanceUserType" column="assistance_user_type"/>
+        <result property="assistanceAllInvite" column="assistance_all_invite"/>
+        <result property="assistanceTime" column="assistance_time"/>
+        <result property="assistancePerson" column="assistance_person"/>
+        <result property="assistanceProductId" column="assistance_product_id"/>
+        <result property="assistanceText" column="assistance_text"/>
+    </resultMap>
+
+
+</mapper>

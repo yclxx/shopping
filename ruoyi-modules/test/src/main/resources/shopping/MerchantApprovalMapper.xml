@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.MerchantApprovalMapper">
+    <resultMap type="org.dromara.shopping.domain.MerchantApproval" id="MerchantApprovalResult">
+        <result property="approvalId" column="approval_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="taskId" column="task_id"/>
+        <result property="type" column="type"/>
+        <result property="brandMobile" column="brand_mobile"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="brandLogo" column="brand_logo"/>
+        <result property="brandReferred" column="brand_referred"/>
+        <result property="activityNature" column="activity_nature"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="shopMobile" column="shop_mobile"/>
+        <result property="shopType" column="shop_type"/>
+        <result property="shopAddress" column="shop_address"/>
+        <result property="shopAddressInfo" column="shop_address_info"/>
+        <result property="shopImage" column="shop_image"/>
+        <result property="businessLicense" column="business_license"/>
+        <result property="businessWeek" column="business_week"/>
+        <result property="businessBegin" column="business_begin"/>
+        <result property="businessEnd" column="business_end"/>
+        <result property="businessHoliday" column="business_holiday"/>
+        <result property="nature" column="nature"/>
+        <result property="extend" column="extend"/>
+        <result property="activity" column="activity"/>
+        <result property="invoiceType" column="invoice_type"/>
+        <result property="accountPayee" column="account_payee"/>
+        <result property="accountBank" column="account_bank"/>
+        <result property="account" column="account"/>
+        <result property="merchantPlatformKey" column="merchant_platform_key"/>
+        <result property="merchant" column="merchant"/>
+        <result property="approvalStatus" column="approval_status"/>
+        <result property="rejectReason" column="reject_reason"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.OrderBackTransMapper">
+
+    <resultMap type="org.dromara.shopping.domain.OrderBackTrans" id="OrderBackTransResult">
+        <result property="thNumber" column="th_number"/>
+        <result property="number" column="number"/>
+        <result property="pickupMethod" column="pickup_method"/>
+        <result property="refund" column="refund"/>
+        <result property="refundId" column="refund_id"/>
+        <result property="channel" column="channel"/>
+        <result property="userReceivedAccount" column="user_received_account"/>
+        <result property="txnTime" column="txn_time"/>
+        <result property="traceTime" column="trace_time"/>
+        <result property="queryId" column="query_id"/>
+        <result property="origQryId" column="orig_qry_id"/>
+        <result property="traceNo" column="trace_no"/>
+        <result property="successTime" column="success_time"/>
+        <result property="orderBackTransState" column="order_back_trans_state"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="refundReason" column="refund_reason"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+    </resultMap>
+
+
+</mapper>

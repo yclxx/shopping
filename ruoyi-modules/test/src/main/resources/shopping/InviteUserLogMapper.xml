@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.InviteUserLogMapper">
+
+    <resultMap type="org.dromara.shopping.domain.InviteUserLog" id="InviteUserLogResult">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="inviteUserId" column="invite_user_id"/>
+        <result property="inviteCityName" column="invite_city_name"/>
+        <result property="inviteCityCode" column="invite_city_code"/>
+        <result property="number" column="number"/>
+        <result property="missionId" column="mission_id"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+    </resultMap>
+
+
+</mapper>
