@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CommercialTenantAccountDetailMapper">
+
+    <resultMap type="org.dromara.shopping.domain.CommercialTenantAccountDetail" id="CommercialTenantAccountDetailResult">
+    <result property="id" column="id"/>
+    <result property="commercialTenantId" column="commercial_tenant_id"/>
+    <result property="commercialTenantName" column="commercial_tenant_name"/>
+    <result property="amount" column="amount"/>
+    <result property="detailType" column="detail_type"/>
+    <result property="status" column="status"/>
+    <result property="pushNumber" column="push_number"/>
+    <result property="failReason" column="fail_reason"/>
+    <result property="remark" column="remark"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

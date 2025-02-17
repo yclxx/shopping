@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CommercialActivityApplyMapper">
+
+    <resultMap type="org.dromara.shopping.domain.CommercialActivityApply" id="CommercialActivityApplyResult">
+    <result property="applyId" column="apply_id"/>
+    <result property="activityId" column="activity_id"/>
+    <result property="activityName" column="activity_name"/>
+    <result property="commercialTenantId" column="commercial_tenant_id"/>
+    <result property="commercialTenantName" column="commercial_tenant_name"/>
+    <result property="commercialTenantTitle" column="commercial_tenant_title"/>
+    <result property="meansOfPayments" column="means_of_payments"/>
+    <result property="meansOfRatio" column="means_of_ratio"/>
+    <result property="publicity" column="publicity"/>
+    <result property="applyStatus" column="apply_status"/>
+    <result property="rejectCause" column="reject_cause"/>
+    <result property="status" column="status"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CommercialActivityMapper">
+
+    <resultMap type="org.dromara.shopping.domain.CommercialActivity" id="CommercialActivityResult">
+    <result property="activityId" column="activity_id"/>
+    <result property="activityName" column="activity_name"/>
+    <result property="activityNote" column="activity_note"/>
+    <result property="bankId" column="bank_id"/>
+    <result property="activityArea" column="activity_area"/>
+    <result property="activityImg" column="activity_img"/>
+    <result property="applyStartDate" column="apply_start_date"/>
+    <result property="applyEndDate" column="apply_end_date"/>
+    <result property="activityStartDate" column="activity_start_date"/>
+    <result property="activityEndDate" column="activity_end_date"/>
+    <result property="activityPlatform" column="activity_platform"/>
+    <result property="activityType" column="activity_type"/>
+    <result property="activityStatus" column="activity_status"/>
+    <result property="status" column="status"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>
