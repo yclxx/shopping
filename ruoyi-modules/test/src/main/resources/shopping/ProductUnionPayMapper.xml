@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductUnionPayMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ProductUnionPay" id="ProductUnionpayResult">
+    <result property="productId" column="product_id"/>
+    <result property="externalProductId" column="external_product_id"/>
+    <result property="title" column="title"/>
+    <result property="coopMd" column="coop_md"/>
+    <result property="cancelMethod" column="cancel_method"/>
+    <result property="flgSubProd" column="flg_sub_prod"/>
+    <result property="flgUpBond" column="flg_up_bond"/>
+    <result property="prodTp" column="prod_tp"/>
+    <result property="dtlPgUrl" column="dtl_pg_url"/>
+    <result property="prodAstidTp" column="prod_astId_tp"/>
+    <result property="flgRfd" column="flg_rfd"/>
+    <result property="flgExprRfd" column="flg_expr_rfd"/>
+    <result property="detailTp" column="detail_tp"/>
+    <result property="cusIstr" column="cus_istr"/>
+    <result property="cusSvcHtline" column="cus_svc_htline"/>
+    <result property="brandQual" column="brand_qual"/>
+    <result property="storeLstTp" column="store_lst_tp"/>
+    <result property="storeLstUrl" column="store_lst_url"/>
+    <result property="exchUrl" column="exch_url"/>
+    <result property="exchAstidTp" column="exch_astId_tp"/>
+    <result property="prodSubTitle" column="prod_sub_title"/>
+    <result property="prodAdv" column="prod_adv"/>
+    </resultMap>
+
+
+</mapper>

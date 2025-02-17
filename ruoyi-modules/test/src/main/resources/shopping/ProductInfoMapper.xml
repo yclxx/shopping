@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductInfoMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ProductInfo" id="ProductInfoResult">
+    <result property="productId" column="product_id"/>
+    <result property="title" column="title"/>
+    <result property="mainPicture" column="main_picture"/>
+    <result property="saleStartTime" column="sale_start_time"/>
+    <result property="saleEndTime" column="sale_end_time"/>
+    <result property="itemId" column="item_id"/>
+    <result property="discount" column="discount"/>
+    <result property="stock" column="stock"/>
+    <result property="totalSales" column="total_sales"/>
+    <result property="applyShopCount" column="apply_shop_count"/>
+    <result property="useTimes" column="use_times"/>
+    <result property="commissionRate" column="commission_rate"/>
+    <result property="activityPriceCent" column="activity_price_cent"/>
+    <result property="originalPriceCent" column="original_price_cent"/>
+    <result property="itemContentGroup" column="item_content_group"/>
+    <result property="itemContentImage" column="item_content_image"/>
+    <result property="itemBuyNote" column="item_buy_note"/>
+    <result property="reserveDesc" column="reserve_desc"/>
+    <result property="shopInfo" column="shop_info"/>
+    <result property="useNote" column="use_note"/>
+    <result property="ticketTimeRule" column="ticket_time_rule"/>
+    <result property="userNumLimited" column="user_num_limited"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="period" column="period"/>
+    <result property="buyLimit" column="buy_limit"/>
+    <result property="brandName" column="brand_name"/>
+    <result property="shopAll" column="shop_all"/>
+    <result property="overdue" column="overdue"/>
+    <result property="anyTime" column="any_Time"/>
+    <result property="leastPrice" column="least_price"/>
+    <result property="reducePrice" column="reduce_price"/>
+    </resultMap>
+
+
+</mapper>

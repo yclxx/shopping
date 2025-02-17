@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductYcfMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ProductYcf" id="ProductYcfResult">
+    <result property="id" column="id"/>
+    <result property="productId" column="product_id"/>
+    <result property="itemId" column="item_id"/>
+    <result property="productType" column="product_type"/>
+    <result property="isTicketVoucher" column="is_ticket_voucher"/>
+    <result property="ticketVoucherDateBegin" column="ticket_voucher_date_begin"/>
+    <result property="ticketVoucherDateEnd" column="ticket_voucher_date_end"/>
+    <result property="poiId" column="poi_id"/>
+    <result property="bookAheadMin" column="book_ahead_min"/>
+    <result property="minNum" column="min_num"/>
+    <result property="maxNum" column="max_num"/>
+    <result property="minNight" column="min_night"/>
+    <result property="maxNight" column="max_night"/>
+    <result property="marketPrice" column="market_price"/>
+    <result property="startDate" column="start_date"/>
+    <result property="endDate" column="end_date"/>
+    <result property="refundType" column="refund_type"/>
+    <result property="advanceOrDelayType" column="advance_or_delay_type"/>
+    <result property="refundPreminute" column="refund_preminute"/>
+    <result property="refundNote" column="refund_note"/>
+    <result property="roomChoiceNum" column="room_choice_num"/>
+    <result property="roomOptionNum" column="room_option_num"/>
+    <result property="ticketChoiceNum" column="ticket_choice_num"/>
+    <result property="ticketOptionNum" column="ticket_option_num"/>
+    <result property="ticketType" column="ticket_type"/>
+    <result property="getTicketMode" column="get_ticket_mode"/>
+    <result property="foodChoiceNum" column="food_choice_num"/>
+    <result property="foodOptionNum" column="food_option_num"/>
+    <result property="isGlobalSale" column="is_global_sale"/>
+    <result property="roomMessage" column="room_message"/>
+    <result property="ticketMessage" column="ticket_message"/>
+    <result property="foodMessage" column="food_message"/>
+    <result property="bookRuleMessage" column="book_rule_message"/>
+    <result property="orderDateBegin" column="order_date_begin"/>
+    <result property="orderDateEnd" column="order_date_end"/>
+    <result property="preSaleDescription" column="pre_sale_description"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

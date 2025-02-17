@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductTicketMapper">
+    <resultMap type="org.dromara.shopping.domain.ProductTicket" id="ProductTicketResult">
+        <result property="ticketId" column="ticket_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="productId" column="product_id"/>
+        <result property="ticketStatus" column="ticket_status"/>
+        <result property="ticketTicketType" column="ticket_ticket_type"/>
+        <result property="ticketChooseSeat" column="ticket_choose_seat"/>
+        <result property="ticketForm" column="ticket_form"/>
+        <result property="ticketCard" column="ticket_card"/>
+        <result property="ticketPostWay" column="ticket_post_way"/>
+        <result property="ticketPostage" column="ticket_postage"/>
+        <result property="ticketNotice" column="ticket_notice"/>
+        <result property="ticketNonsupport" column="ticket_nonsupport"/>
+        <result property="ticketInvoice" column="ticket_invoice"/>
+        <result property="ticketExpired" column="ticket_expired"/>
+        <result property="ticketAnyTime" column="ticket_any_time"/>
+    </resultMap>
+
+</mapper>
