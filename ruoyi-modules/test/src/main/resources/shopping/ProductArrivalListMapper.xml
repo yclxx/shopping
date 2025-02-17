@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductArrivalListMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ProductArrivalList" id="ProductArrivalListResult">
+    <result property="arrivalListId" column="arrival_list_id"/>
+    <result property="productName" column="product_name"/>
+    <result property="listDate" column="list_date"/>
+    <result property="qty" column="qty"/>
+    <result property="sendTime" column="send_time"/>
+    <result property="arriveTime" column="arrive_time"/>
+    <result property="isArrive" column="is_arrive"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="productId" column="product_id"/>
+    <result property="platformKey" column="platform_key"/>
+    </resultMap>
+
+
+</mapper>

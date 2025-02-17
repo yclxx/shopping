@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductCouponMapper">
+    <resultMap type="org.dromara.shopping.domain.ProductCoupon" id="CouponResult">
+        <result property="couponId" column="coupon_id"/>
+        <result property="productId" column="product_id"/>
+    </resultMap>
+</mapper>

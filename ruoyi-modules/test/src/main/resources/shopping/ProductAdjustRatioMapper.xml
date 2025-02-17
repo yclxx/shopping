@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ProductAdjustRatioMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ProductAdjustRatio" id="ProductAdjustRatioResult">
+    <result property="ratioId" column="ratio_id"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="adjustType" column="adjust_type"/>
+    <result property="categoryId" column="category_id"/>
+    <result property="adjustRatio" column="adjust_ratio"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>
