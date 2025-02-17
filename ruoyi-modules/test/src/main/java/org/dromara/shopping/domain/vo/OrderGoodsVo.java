@@ -4,7 +4,7 @@ import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import org.dromara.common.excel.annotation.ExcelDictFormat;
 import org.dromara.common.excel.convert.ExcelDictConvert;
-import com.ruoyi.zlyyh.domain.Order;
+import org.dromara.shopping.domain.Order;
 import lombok.Data;
 
 import java.math.BigDecimal;

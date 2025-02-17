@@ -3,7 +3,7 @@ package org.dromara.shopping.domain.vo;
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.ruoyi.zlyyh.domain.Order;
+import org.dromara.shopping.domain.Order;
 import lombok.Data;
 
 import java.math.BigDecimal;

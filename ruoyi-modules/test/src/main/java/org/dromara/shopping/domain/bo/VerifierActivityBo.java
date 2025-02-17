@@ -1,7 +1,7 @@
 package org.dromara.shopping.domain.bo;
 
 import org.dromara.common.mybatis.core.domain.BaseEntity;
-import com.ruoyi.zlyyh.domain.ActivityMerchant;
+import org.dromara.shopping.domain.ActivityMerchant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
