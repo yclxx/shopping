@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CityMerchantMapper">
+
+    <resultMap type="org.dromara.shopping.domain.CityMerchant" id="CityMerchantResult">
+    <result property="id" column="id"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="adcode" column="adcode"/>
+    <result property="areaName" column="area_name"/>
+    <result property="merchantId" column="merchant_id"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CodeMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Code" id="CodeResult">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productSessionId" column="product_session_id"/>
+        <result property="productSkuId" column="product_sku_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productSessionName" column="product_session_name"/>
+        <result property="productSkuName" column="product_sku_name"/>
+        <result property="codeNo" column="code_no"/>
+        <result property="allocationState" column="allocation_state"/>
+        <result property="number" column="number"/>
+        <result property="usedStatus" column="used_status"/>
+        <result property="codeType" column="code_type"/>
+        <result property="usedTime" column="used_time"/>
+        <result property="shopId" column="shop_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="verifierId" column="verifier_id"/>
+        <result property="verifierMobile" column="verifier_mobile"/>
+        <result property="qrcodeImgUrl" column="qrcode_img_url"/>
+        <result property="appointmentShopId" column="appointment_shop_id"/>
+        <result property="appointmentShopName" column="appointment_shop_name"/>
+        <result property="appointmentDate" column="appointment_date"/>
+        <result property="appointmentStatus" column="appointment_status"/>
+        <result property="appointmentId" column="appointment_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="customMobile" column="custom_mobile"/>
+        <result property="userNumber" column="user_number"/>
+        <result property="shortUrl" column="short_url"/>
+    </resultMap>
+
+    <resultMap type="org.dromara.shopping.domain.vo.AppCodeStatisticsVo" id="CodeStatistics">
+        <result property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="shopId" column="shop_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="ct" column="ct"/>
+    </resultMap>
+
+    <select id="selectProductList" resultType="org.dromara.shopping.domain.vo.CodeVo">
+        SELECT product_id,product_name FROM `t_code`
+        WHERE used_status = '1'
+        <if test="productName != null and productName !=''">
+            AND product_name LIKE CONCAT('%',#{productName},'%')
+        </if>
+        <if test="startTime != null">
+            AND used_time <![CDATA[>=]]> #{startTime}
+        </if>
+        <if test="endTime != null">
+            AND used_time <![CDATA[<=]]>  #{endTime}
+        </if>
+        AND shop_id = #{shopId}
+        AND verifier_id IN
+        <foreach collection="verifierId" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        GROUP BY product_id,product_name
+    </select>
+    <select id="getStatisticsList" resultType="org.dromara.shopping.domain.vo.CodeVo">
+        SELECT * FROM `t_code` WHERE del_flag = '0' and product_id = #{productId}
+        AND ((used_time BETWEEN #{startTime} AND #{endTime} and shop_id = #{shopId} and used_status = '1') OR
+        (appointment_shop_id = #{shopId} AND appointment_status = '1' AND appointment_date BETWEEN #{startTime} AND
+        #{endTime}))
+        <if test="verifierMobile != null and verifierMobile != ''">
+            and verifier_mobile = #{verifierMobile}
+        </if>
+        <if test='usedStatus != null and usedStatus == "1"'>
+            and used_status = '1'
+        </if>
+        <if test='usedStatus != null and usedStatus == "0"'>
+            and used_status != '1'
+        </if>
+        <if test="productName != null and productName != ''">
+            and (custom_mobile = #{productName} or code_no = #{productName})
+        </if>
+        order by used_time desc,appointment_date desc,start_time asc,update_time desc
+    </select>
+    <select id="codeStatistics" resultMap="CodeStatistics">
+        SELECT product_id,count(0) as ct FROM `t_code`
+        where del_flag = '0'
+        <if test='queryType == "1"'>
+            and shop_id = #{shopId}
+            and used_status = '1'
+            <if test="startTime != null">
+                AND used_time <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND used_time <![CDATA[<]]>  #{endTime}
+            </if>
+        </if>
+        <if test='queryType == "2"'>
+            and appointment_shop_id = #{shopId}
+            and appointment_status = '1'
+            <if test="startTime != null">
+                AND appointment_date <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND appointment_date <![CDATA[<]]>  #{endTime}
+            </if>
+        </if>
+        GROUP BY product_id
+    </select>
+</mapper>
