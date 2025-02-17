@@ -2,15 +2,11 @@ package org.dromara.shopping.domain.vo;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.ruoyi.common.core.utils.SpringUtils;
-import com.ruoyi.common.core.utils.StringUtils;
+import lombok.Data;
+import org.dromara.common.core.utils.SpringUtils;
 import org.dromara.common.excel.annotation.ExcelDictFormat;
 import org.dromara.common.excel.convert.ExcelDictConvert;
-import com.ruoyi.common.satoken.utils.LoginHelper;
-import org.dromara.shopping.service.BaseShareUserService;
-import org.dromara.shopping.utils.PlatformUtils;
-import org.dromara.shopping.utils.ZlyyhUtils;
-import lombok.Data;
+import org.dromara.common.satoken.utils.LoginHelper;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

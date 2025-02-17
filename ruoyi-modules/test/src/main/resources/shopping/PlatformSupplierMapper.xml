@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.PlatformSupplierMapper">
+
+    <resultMap type="org.dromara.shopping.domain.PlatformSupplier" id="PlatformSupplierResult">
+    <result property="id" column="id"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="supplierId" column="supplier_id"/>
+    <result property="productMinPrice" column="product_min_price"/>
+    <result property="productMaxPrice" column="product_max_price"/>
+    <result property="productMinRate" column="product_min_rate"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

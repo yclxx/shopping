@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.PlatformServiceTariffingMapper">
+
+    <resultMap type="org.dromara.shopping.domain.PlatformServiceTariffing" id="PlatformServiceTariffingResult">
+    <result property="id" column="id"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="categoryId" column="category_id"/>
+    <result property="serviceTariffing" column="service_tariffing"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>
