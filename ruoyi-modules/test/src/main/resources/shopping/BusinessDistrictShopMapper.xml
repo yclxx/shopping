@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.BusinessDistrictShopMapper">
+
+    <resultMap type="org.dromara.shopping.domain.BusinessDistrictShop" id="BusinessDistrictShopResult">
+    <result property="id" column="id"/>
+    <result property="businessDistrictId" column="business_district_id"/>
+    <result property="shopId" column="shop_id"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

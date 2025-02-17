@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ActivityFileShopMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ActivityFileShop" id="ActivityFileShopResult">
+    <result property="activityShopId" column="activity_shop_id"/>
+    <result property="activityShopName" column="activity_shop_name"/>
+    <result property="address" column="address"/>
+    <result property="status" column="status"/>
+    <result property="formattedAddress" column="formatted_address"/>
+    <result property="province" column="province"/>
+    <result property="city" column="city"/>
+    <result property="district" column="district"/>
+    <result property="procode" column="procode"/>
+    <result property="citycode" column="citycode"/>
+    <result property="adcode" column="adcode"/>
+    <result property="fileName" column="file_name"/>
+    <result property="fileId" column="file_id"/>
+    <result property="indexUrl" column="index_url"/>
+    <result property="longitude" column="longitude"/>
+    <result property="latitude" column="latitude"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="sort" column="sort"/>
+    <result property="typeId" column="type_id"/>
+    </resultMap>
+    <select id="selectFileShopList" resultType="org.dromara.shopping.domain.vo.ActivityFileShopVo">
+        select *,
+               ACOS(
+                    COS(RADIANS(#{bo.latitude})) *
+                    COS(RADIANS(latitude)) *
+                    COS(RADIANS(longitude) - RADIANS(#{bo.longitude})) +
+                    SIN(RADIANS(#{bo.latitude})) *
+                    SIN(RADIANS(latitude))
+                ) * 6378 AS distance
+        from t_activity_file_shop
+        <where>
+            status = 0
+            <if test="bo.fileId != null and bo.fileId != ''">
+                AND file_id = #{bo.fileId}
+            </if>
+            <if test="bo.citycode != null and bo.citycode != ''">
+                AND citycode = #{bo.citycode}
+            </if>
+            <if test="bo.adcode != null and bo.adcode != ''">
+                AND adcode = #{bo.adcode}
+            </if>
+            <if test="bo.typeId != null and bo.typeId != ''">
+                AND type_id = #{bo.typeId}
+            </if>
+            <if test="bo.activityShopName != null and bo.activityShopName != ''">
+                AND (activity_shop_name like concat('%', #{bo.activityShopName}, '%')
+                or address like concat('%', #{bo.activityShopName}, '%')
+                or formatted_address like concat('%', #{bo.activityShopName}, '%'))
+            </if>
+        </where>
+        ORDER BY sort asc,distance asc
+    </select>
+    <select id="selectCityList" resultType="org.dromara.shopping.domain.vo.AreaVo">
+        select citycode adcode, city areaName from t_activity_file_shop
+        where file_id = #{fileId} and status = '0' and city is not null and city != '' and citycode is not null and citycode != ''
+        group by citycode,city
+        order by citycode
+    </select>
+    <select id="selectTypeByFileId" resultType="java.lang.Long">
+        select type_id from t_activity_file_shop
+        where file_id = #{fileId} and status = '0'
+        group by type_id
+    </select>
+
+
+</mapper>

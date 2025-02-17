@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.BrowseMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Browse" id="BrowseResult">
+    <result property="browseId" column="browse_id"/>
+    <result property="browseName" column="browse_name"/>
+    <result property="browseRemark" column="browse_remark"/>
+    <result property="status" column="status"/>
+    <result property="toType" column="to_type"/>
+    <result property="appId" column="app_id"/>
+    <result property="url" column="url"/>
+    <result property="startTime" column="start_time"/>
+    <result property="endTime" column="end_time"/>
+    <result property="showCity" column="show_city"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="supportChannel" column="support_channel"/>
+    <result property="assignDate" column="assign_date"/>
+    <result property="weekDate" column="week_date"/>
+    <result property="productId" column="product_id"/>
+    <result property="sort" column="sort"/>
+    <result property="sysDeptId" column="sys_dept_id"/>
+    <result property="sysUserId" column="sys_user_id"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+
+</mapper>

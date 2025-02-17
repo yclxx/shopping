@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.AppointmentMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Appointment" id="AppointmentResult">
+    <result property="id" column="id"/>
+    <result property="productId" column="product_id"/>
+    <result property="productSkuId" column="product_sku_id"/>
+    <result property="appointmentDate" column="appointment_date"/>
+    <result property="appointmentCount" column="appointment_count"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="version" column="version"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="jzTime" column="jz_time"/>
+    </resultMap>
+
+
+</mapper>
