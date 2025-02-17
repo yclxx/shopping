@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.GroupActivityMapper">
+
+    <resultMap type="org.dromara.shopping.domain.GroupActivity" id="GroupActivityResult">
+    <result property="activityId" column="activity_id"/>
+    <result property="activityName" column="activity_name"/>
+    <result property="activityShortName" column="activity_short_name"/>
+    <result property="activityStartDate" column="activity_start_date"/>
+    <result property="activityEndDate" column="activity_end_date"/>
+    <result property="activityStatus" column="activity_status"/>
+    <result property="activityCount" column="activity_count"/>
+    <result property="activityPrice" column="activity_price"/>
+    <result property="activityRule" column="activity_rule"/>
+    <result property="shareTitle" column="share_title"/>
+    <result property="shareImage" column="share_image"/>
+    <result property="groupValid" column="group_valid"/>
+    <result property="productId" column="product_id"/>
+    <result property="isGroup" column="is_group"/>
+    <result property="sharePoster" column="share_poster"/>
+    <result property="sharePosterTitle" column="share_poster_title"/>
+    <result property="groupTime" column="group_time"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="delFlag" column="del_flag"/>
+        <result property="platformKey" column="platform_key"/>
+    </resultMap>
+
+
+</mapper>

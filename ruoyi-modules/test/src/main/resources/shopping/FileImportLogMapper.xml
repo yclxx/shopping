@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.FileImportLogMapper">
+
+    <resultMap type="org.dromara.shopping.domain.FileImportLog" id="FileImportLogResult">
+    <result property="importLogId" column="import_log_id"/>
+    <result property="url" column="url"/>
+    <result property="name" column="name"/>
+    <result property="pageTitle" column="page_title"/>
+    <result property="count" column="count"/>
+    <result property="importCount" column="import_count"/>
+    <result property="pageUrl" column="page_url"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

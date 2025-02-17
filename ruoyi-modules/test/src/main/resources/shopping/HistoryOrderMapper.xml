@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.HistoryOrderMapper">
+
+    <resultMap type="org.dromara.shopping.domain.HistoryOrder" id="HistoryOrderResult">
+        <result property="number" column="number"/>
+        <result property="productId" column="product_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productImg" column="product_img"/>
+        <result property="pickupMethod" column="pickup_method"/>
+        <result property="totalAmount" column="total_amount"/>
+        <result property="reducedPrice" column="reduced_price"/>
+        <result property="serviceTariffing" column="service_tariffing"/>
+        <result property="wantAmount" column="want_amount"/>
+        <result property="outAmount" column="out_amount"/>
+        <result property="couponId" column="coupon_id"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="expireDate" column="expire_date"/>
+        <result property="count" column="count"/>
+        <result property="status" column="status"/>
+        <result property="cusRefund" column="cus_refund"/>
+        <result property="account" column="account"/>
+        <result property="sendStatus" column="send_status"/>
+        <result property="sendTime" column="send_time"/>
+        <result property="externalProductId" column="external_product_id"/>
+        <result property="externalOrderNumber" column="external_order_number"/>
+        <result property="pushNumber" column="push_number"/>
+        <result property="failReason" column="fail_reason"/>
+        <result property="orderCityName" column="order_city_name"/>
+        <result property="orderCityCode" column="order_city_code"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="payMerchant" column="pay_merchant"/>
+        <result property="externalProductSendValue" column="external_product_send_value"/>
+        <result property="orderType" column="order_type"/>
+        <result property="cancelStatus" column="cancel_status"/>
+        <result property="parentNumber" column="parent_number"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="usedStartTime" column="used_start_time"/>
+        <result property="usedEndTime" column="used_end_time"/>
+        <result property="usedTime" column="used_time"/>
+        <result property="unionPay" column="union_pay"/>
+        <result property="unionProductId" column="union_product_id"/>
+        <result property="productSessionId" column="product_session_id"/>
+        <result property="productSkuId" column="product_sku_id"/>
+        <result property="productSessionName" column="product_session_name"/>
+        <result property="productSkuName" column="product_sku_name"/>
+        <result property="verificationStatus" column="verification_status"/>
+        <result property="collectiveNumber" column="collective_number"/>
+        <result property="autoRefund" column="auto_refund"/>
+        <result property="payNumber" column="pay_number"/>
+        <result property="payWay" column="pay_way"/>
+        <result property="promotionCode" column="promotion_code"/>
+        <result property="itemPrice" column="item_price"/>
+        <result property="productPrice" column="product_price"/>
+        <result property="appointment" column="appointment"/>
+        <result property="appointmentStatus" column="appointment_status"/>
+        <result property="isGroup" column="is_group"/>
+        <result property="orderSource" column="order_source"/>
+        <result property="receiveOrder" column="receive_order"/>
+        <result property="promotionUserId" column="promotion_user_id"/>
+        <result property="receiveStatus" column="receive_status"/>
+        <result property="receiveNumber" column="receive_number"/>
+        <result property="supplier" column="supplier"/>
+        <result property="supplierSettle" column="supplier_settle"/>
+        <result property="payServiceCharge" column="pay_service_charge" />
+    </resultMap>
+
+    <resultMap type="org.dromara.shopping.domain.vo.UserPayCountVo" id="PayCountResult">
+        <result property="userId" column="user_id"/>
+        <result property="payCount" column="pay_count"/>
+    </resultMap>
+
+    <select id="selectUserPayCount" resultMap="PayCountResult">
+        SELECT
+            user_id,
+            count( 0 ) pay_count
+        FROM
+            (
+                SELECT
+                    user_id,
+                    number
+                FROM
+                    t_history_order
+                WHERE
+                    product_id = #{productId}
+                  AND `status` != '3'
+                  AND send_status = '2' UNION ALL
+                SELECT
+                    user_id,
+                    number
+                FROM
+                    t_order
+                WHERE
+                    product_id = #{productId}
+                  AND `status` != '3'
+                  AND send_status = '2'
+            ) b
+        GROUP BY
+            user_id
+        order by
+            user_id
+    </select>
+</mapper>

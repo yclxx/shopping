@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.HistoryOrderInfoMapper">
+
+    <resultMap type="org.dromara.shopping.domain.HistoryOrderInfo" id="HistoryOrderInfoResult">
+        <result property="number" column="number"/>
+        <result property="vip62Status" column="vip62_status"/>
+        <result property="vip62MemberType" column="vip62_member_type"/>
+        <result property="vip62EndTime" column="vip62_end_time"/>
+        <result property="vip62BeginTime" column="vip62_begin_time"/>
+        <result property="txnTime" column="txn_time"/>
+        <result property="queryId" column="query_id"/>
+        <result property="traceTime" column="trace_time"/>
+        <result property="traceNo" column="trace_no"/>
+        <result property="txnAmt" column="txn_amt"/>
+        <result property="issAddnData" column="iss_addn_data"/>
+        <result property="commodityJson" column="commodity_json"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="payBankType" column="pay_bank_type"/>
+    </resultMap>
+
+
+</mapper>

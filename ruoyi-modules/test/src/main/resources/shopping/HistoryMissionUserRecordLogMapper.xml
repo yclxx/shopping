@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.HistoryMissionUserRecordLogMapper">
+
+    <resultMap type="org.dromara.shopping.domain.HistoryMissionUserRecordLog" id="MissionUserRecordLogResult">
+        <result property="id" column="id"/>
+        <result property="missionUserRecordId" column="mission_user_record_id"/>
+        <result property="pushNumber" column="push_number"/>
+        <result property="externalOrderNumber" column="external_order_number"/>
+        <result property="externalProductId" column="external_product_id"/>
+        <result property="sendValue" column="send_value"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="accessCode" column="access_code"/>
+    </resultMap>
+    <insert id="insertByMissionUserRecordLog">
+        INSERT INTO t_history_mission_user_record_log
+        select * from t_mission_user_record_log where mission_user_record_id in
+        <foreach collection="recordIds" item="recordId" open="(" separator="," close=")">
+            #{recordId}
+        </foreach>
+    </insert>
+    <delete id="deleteByMissionUserRecordLog">
+        DELETE FROM t_mission_user_record_log
+        WHERE mission_user_record_id in
+        <foreach collection="recordIds" item="recordId" open="(" separator="," close=")">
+            #{recordId}
+        </foreach>
+    </delete>
+
+
+</mapper>
