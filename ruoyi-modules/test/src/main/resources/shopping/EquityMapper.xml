@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.EquityMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Equity" id="EquityResult">
+    <result property="equityId" column="equity_id"/>
+    <result property="equityName" column="equity_name"/>
+    <result property="sellAmount" column="sell_amount"/>
+    <result property="showStartDate" column="show_start_date"/>
+    <result property="showEndDate" column="show_end_date"/>
+    <result property="sellStartDate" column="sell_start_date"/>
+    <result property="sellEndDate" column="sell_end_date"/>
+    <result property="expiryDate" column="expiry_date"/>
+    <result property="dayCount" column="day_count"/>
+    <result property="status" column="status"/>
+    <result property="equityImg" column="equity_img"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="platformKey" column="platform_key"/>
+    </resultMap>
+
+
+</mapper>

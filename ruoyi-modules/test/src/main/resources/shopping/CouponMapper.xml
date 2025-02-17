@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CouponMapper">
+    <resultMap type="org.dromara.shopping.domain.Coupon" id="CouponResult">
+        <result property="couponId" column="coupon_id"/>
+        <result property="couponName" column="coupon_name"/>
+        <result property="redeemCode" column="redeem_code"/>
+        <result property="couponAmount" column="coupon_amount"/>
+        <result property="minAmount" column="min_amount"/>
+        <result property="couponType" column="coupon_type"/>
+        <result property="periodOfStart" column="period_of_start"/>
+        <result property="periodOfValidity" column="period_of_validity"/>
+        <result property="useStatus" column="use_status"/>
+        <result property="useTime" column="use_time"/>
+        <result property="number" column="number"/>
+        <result property="genTime" column="gen_time"/>
+        <result property="couponDescription" column="coupon_description"/>
+        <result property="userAddTime" column="user_add_time"/>
+        <result property="actionNo" column="action_no"/>
+        <result property="couponImage" column="coupon_image"/>
+        <result property="userId" column="user_id"/>
+        <result property="conversionStartDate" column="conversion_start_date"/>
+        <result property="conversionEndDate" column="conversion_end_date"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="autoPay" column="auto_pay"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CommercialTenantMapper">
+
+    <resultMap type="org.dromara.shopping.domain.CommercialTenant" id="CommercialTenantResult">
+        <result property="commercialTenantId" column="commercial_tenant_id"/>
+        <result property="commercialTenantName" column="commercial_tenant_name"/>
+        <result property="commercialTenantTitle" column="commercial_tenant_title"/>
+        <result property="commercialTenantImg" column="commercial_tenant_img"/>
+        <result property="verifierId" column="verifier_id"/>
+        <result property="adminName" column="admin_name"/>
+        <result property="adminMobile" column="admin_mobile"/>
+        <result property="tags" column="tags"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="indexShow" column="index_show"/>
+        <result property="status" column="status"/>
+        <result property="sort" column="sort"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="brandId" column="brand_id"/>
+        <result property="ylBrandId" column="yl_brand_id"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="isShare" column="is_share"/>
+        <result property="supplier" column="supplier"/>
+        <result property="license" column="license"/>
+        <result property="nature" column="nature"/>
+        <result property="invoice" column="invoice"/>
+        <result property="account" column="account"/>
+        <result property="invoice" column="invoice"/>
+        <result property="activity" column="activity"/>
+        <result property="activityNature" column="activity_nature"/>
+        <result property="isCache" column="is_cache"/>
+        <result property="city" column="city"/>
+        <result property="citycode" column="citycode"/>
+        <result property="source" column="source"/>
+        <result property="commercialTenantAddress" column="commercial_tenant_address"/>
+        <result property="name" column="name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="urgentMobile" column="urgent_mobile"/>
+        <result property="commercialTenantType" column="commercial_tenant_type"/>
+    </resultMap>
+
+
+</mapper>

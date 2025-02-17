@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.CommercialTenantAgreementMapper">
+
+    <resultMap type="org.dromara.shopping.domain.CommercialTenantAgreement" id="CommercialTenantAgreementResult">
+    <result property="agreementId" column="agreement_id"/>
+    <result property="agreementName" column="agreement_name"/>
+    <result property="agreementTime" column="agreement_time"/>
+    <result property="agreementUrl" column="agreement_url"/>
+    <result property="amount" column="amount"/>
+    <result property="serviceRate" column="service_rate"/>
+    <result property="contractDate" column="contract_date"/>
+    <result property="contractDateStart" column="contract_date_start"/>
+    <result property="contractDateEnd" column="contract_date_end"/>
+    <result property="commercialTenantId" column="commercial_tenant_id"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>
