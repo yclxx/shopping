@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.UnionpayProductMapper">
+
+    <resultMap type="org.dromara.shopping.domain.UnionpayProduct" id="UnionpayProductResult">
+    <result property="activityNo" column="activity_no"/>
+    <result property="activityNm" column="activity_nm"/>
+    <result property="activityTp" column="activity_tp"/>
+    <result property="beginTime" column="begin_time"/>
+    <result property="endTime" column="end_time"/>
+    <result property="limitTp" column="limit_tp"/>
+    <result property="activityMark" column="activity_mark"/>
+    <result property="allCount" column="all_count"/>
+    <result property="allRemainCount" column="all_remain_count"/>
+    <result property="dayCount" column="day_count"/>
+    <result property="dayRemainCount" column="day_remain_count"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

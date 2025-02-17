@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ShareWithdrawDepositLogMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ShareWithdrawDepositLog" id="ShareWithdrawDepositLogResult">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="amount" column="amount"/>
+        <result property="status" column="status"/>
+        <result property="sendStatus" column="send_status"/>
+        <result property="callbackAmount" column="callback_amount"/>
+        <result property="sendTime" column="send_time"/>
+        <result property="sendAccount" column="send_account"/>
+        <result property="pushNumber" column="push_number"/>
+        <result property="remake" column="remake"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+    </resultMap>
+
+
+</mapper>

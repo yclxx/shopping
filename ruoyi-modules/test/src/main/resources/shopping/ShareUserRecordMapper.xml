@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ShareUserRecordMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ShareUserRecord" id="ShareUserRecordResult">
+        <result property="recordId" column="record_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="inviteeUserId" column="invitee_user_id"/>
+        <result property="number" column="number"/>
+        <result property="orderUsedTime" column="order_used_time"/>
+        <result property="awardAmount" column="award_amount"/>
+        <result property="awardType" column="award_type"/>
+        <result property="inviteeStatus" column="invitee_status"/>
+        <result property="awardStatus" column="award_status"/>
+        <result property="awardTime" column="award_time"/>
+        <result property="awardAccount" column="award_account"/>
+        <result property="awardPushNumber" column="award_push_number"/>
+        <result property="pushRemake" column="push_remake"/>
+        <result property="productName" column="product_name"/>
+        <result property="actualReleasAmount" column="actual_releas_amount"/>
+        <result property="remake" column="remake"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="totalAmount" column="total_amount"/>
+        <result property="payServiceCharge" column="pay_service_charge"/>
+
+    </resultMap>
+
+</mapper>

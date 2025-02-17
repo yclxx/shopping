@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.UnionpayMissionProgressMapper">
+
+    <resultMap type="org.dromara.shopping.domain.UnionpayMissionProgress" id="UnionpayMissionProgressResult">
+    <result property="progressId" column="progress_id"/>
+    <result property="upMissionId" column="up_mission_id"/>
+    <result property="upMissionGroupId" column="up_mission_group_id"/>
+    <result property="upMissionUserId" column="up_mission_user_id"/>
+    <result property="dayProgress" column="day_progress"/>
+    <result property="weekProgress" column="week_progress"/>
+    <result property="monthProgress" column="month_progress"/>
+    <result property="activityProgress" column="activity_progress"/>
+    <result property="tranProgress" column="tran_progress"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.UnionPayContentRefundOrderMapper">
+
+    <resultMap type="org.dromara.shopping.domain.UnionPayContentRefundOrder" id="UnionPayContentRefundOrderResult">
+    <result property="id" column="id"/>
+    <result property="unionPayAppId" column="union_pay_app_id"/>
+    <result property="unionPayOrderId" column="union_pay_order_id"/>
+    <result property="unionPayProdId" column="union_pay_prod_id"/>
+    <result property="unionPayTxnTime" column="union_pay_txn_time"/>
+    <result property="unionPayResultStatus" column="union_pay_result_status"/>
+    <result property="unionPayBondNo" column="union_pay_bond_no"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+
+</mapper>

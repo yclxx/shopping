@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ShopTourMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ShopTour" id="ShopTourResult">
+        <result property="id" column="id"/>
+        <result property="shopId" column="shop_id"/>
+        <result property="verifierId" column="verifier_id"/>
+        <result property="rewardAmount" column="reward_amount"/>
+        <result property="isReserve" column="is_reserve"/>
+        <result property="shopStatus" column="shop_status"/>
+        <result property="status" column="status"/>
+        <result property="checkRemark" column="check_remark"/>
+        <result property="verifierImage" column="verifier_image"/>
+        <result property="goodsImage" column="goods_image"/>
+        <result property="shopImage" column="shop_image"/>
+        <result property="tourRemark" column="tour_remark"/>
+        <result property="oldMerchantNo" column="old_merchant_no"/>
+        <result property="merchantType" column="merchant_type"/>
+        <result property="merchantNo" column="merchant_no"/>
+        <result property="isActivity" column="is_activity"/>
+        <result property="isClose" column="is_close"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="reserveValidity" column="reserve_validity"/>
+        <result property="reserveDate" column="reserve_date"/>
+        <result property="noActivityRemark" column="no_activity_remark"/>
+        <result property="closeRemark" column="close_remark"/>
+        <result property="tourActivityId" column="tour_activity_id"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+    </resultMap>
+    <select id="queryPageTourList" resultType="org.dromara.shopping.domain.vo.ShopTourVo">
+        select s.shop_name shopName,s.address address,ta.tour_activity_name tourActivityName,tour.*
+        from t_shop_tour tour left join t_shop s on tour.shop_id = s.shop_id
+        left join t_shop_tour_activity ta on ta.tour_activity_id = tour.tour_activity_id
+        <where>
+            tour.del_flag = '0'
+            and tour.is_reserve = #{bo.isReserve}
+            <if test="bo.shopName != null and bo.shopName != ''">
+                and s.shop_name like concat('%',#{bo.shopName},'%')
+            </if>
+            <if test="bo.cityCode != null and bo.cityCode != ''">
+                and s.citycode = #{bo.cityCode}
+            </if>
+            <if test="bo.districtCode != null and bo.districtCode != ''">
+                and s.adcode = #{bo.districtCode}
+            </if>
+            <if test="bo.tourActivityId != null and bo.tourActivityId != ''">
+                and tour.tour_activity_id = #{bo.tourActivityId}
+            </if>
+            <if test="bo.activityIds != null and bo.activityIds.size > 0">
+                AND tour.tour_activity_id in
+                <foreach item="item" collection="bo.activityIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        order by tour.create_time desc
+    </select>
+    <select id="queryPageNearTourList" resultType="org.dromara.shopping.domain.vo.ShopTourVo">
+        select s.shop_name shopName,s.address address,ta.tour_activity_name tourActivityName,tour.*,
+        ACOS(
+        COS(RADIANS(#{bo.latitude})) *
+        COS(RADIANS(s.latitude)) *
+        COS(RADIANS(s.longitude) - RADIANS(#{bo.longitude})) +
+        SIN(RADIANS(#{bo.latitude})) *
+        SIN(RADIANS(s.latitude))
+        ) * 6378 AS distance
+        from t_shop_tour tour left join t_shop s on tour.shop_id = s.shop_id
+        left join t_shop_tour_activity ta on ta.tour_activity_id = tour.tour_activity_id
+        <where>
+            tour.del_flag = '0'
+            and tour.is_reserve = '0'
+            <if test="bo.shopName != null and bo.shopName != ''">
+                and s.shop_name like concat('%',#{bo.shopName},'%')
+            </if>
+            <if test="bo.tourActivityId != null and bo.tourActivityId != ''">
+                and tour.tour_activity_id = #{bo.tourActivityId}
+            </if>
+            <if test="bo.activityIds != null and bo.activityIds.size > 0">
+                AND tour.tour_activity_id in
+                <foreach item="item" collection="bo.activityIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        ORDER BY distance asc
+    </select>
+    <select id="queryReserveShopList" resultType="org.dromara.shopping.domain.vo.ShopTourVo">
+        select s.shop_name shopName,s.address address,s.longitude longitude,s.latitude latitude,
+        ta.tour_activity_name tourActivityName,tour.*,
+        ACOS(
+        COS(RADIANS(#{bo.latitude})) *
+        COS(RADIANS(s.latitude)) *
+        COS(RADIANS(s.longitude) - RADIANS(#{bo.longitude})) +
+        SIN(RADIANS(#{bo.latitude})) *
+        SIN(RADIANS(s.latitude))
+        ) * 6378 AS distance
+        from t_shop_tour tour left join t_shop s on tour.shop_id = s.shop_id
+        left join t_shop_tour_activity ta on ta.tour_activity_id = tour.tour_activity_id
+        <where>
+            tour.del_flag = '0'
+            <if test="bo.isReserve != null and bo.isReserve != ''">
+                and tour.is_reserve = #{bo.isReserve}
+            </if>
+            <if test="bo.verifierId != null and bo.verifierId != ''">
+                and tour.verifier_id = #{bo.verifierId}
+            </if>
+            <if test="bo.status != null and bo.status != '' and bo.status == 1">
+                and tour.status = '1'
+            </if>
+            <if test="bo.status != null and bo.status != '' and bo.status == 2">
+                and tour.status in('2','4')
+            </if>
+            <if test="bo.status != null and bo.status != '' and bo.status == 0">
+                and tour.status = '3'
+            </if>
+            <if test="bo.status != null and bo.status != '' and bo.status == 4">
+                and tour.status = #{bo.status}
+            </if>
+            <if test="bo.tourIds != null and bo.tourIds.size > 0">
+                AND tour.id in
+                <foreach item="item" collection="bo.tourIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        order by tour.reserve_date desc
+    </select>
+
+
+</mapper>

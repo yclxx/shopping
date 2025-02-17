@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.UserMapper">
+
+    <resultMap type="com.ruoyi.system.api.domain.User" id="UserResult">
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userImg" column="user_img"/>
+        <result property="mobile" column="mobile"/>
+        <result property="openId" column="open_id"/>
+        <result property="status" column="status"/>
+        <result property="reloadUser" column="reload_user"/>
+        <result property="vipUser" column="vip_user"/>
+        <result property="vipExpiryDate" column="vip_expiry_date"/>
+        <result property="registerCityName" column="register_city_name"/>
+        <result property="registerCityCode" column="register_city_code"/>
+        <result property="followStatus" column="follow_status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="loginIp" column="login_ip"/>
+        <result property="loginDate" column="login_date"/>
+        <result property="loginCityName" column="login_city_name"/>
+        <result property="loginCityCode" column="login_city_code"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="activityFlag" column="activity_flag"/>
+    </resultMap>
+
+    <select id="selectOneIncludeMobile" resultMap="UserResult">
+        SELECT *
+        FROM t_user ${ew.customSqlSegment} and mobile = #{user.mobile}
+        limit 1
+    </select>
+    <select id="selectPageIncludeMobile" resultMap="UserResult">
+        SELECT * FROM t_user ${ew.customSqlSegment}
+        <if test="user != null and user.mobile != null and user.mobile != ''">
+            and mobile = #{user.mobile}
+        </if>
+    </select>
+
+    <select id="selectListIncludeMobile" resultMap="UserResult">
+        SELECT * FROM t_user ${ew.customSqlSegment}
+        <if test="user != null and user.mobile != null and user.mobile != ''">
+            and mobile = #{user.mobile}
+        </if>
+    </select>
+
+</mapper>

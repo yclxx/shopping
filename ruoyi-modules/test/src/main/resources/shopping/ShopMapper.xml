@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ShopMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Shop" id="ShopResult">
+        <result property="shopId" column="shop_id"/>
+        <result property="commercialTenantId" column="commercial_tenant_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="shopTel" column="shop_tel"/>
+        <result property="businessHours" column="business_hours"/>
+        <result property="address" column="address"/>
+        <result property="status" column="status"/>
+        <result property="formattedAddress" column="formatted_address"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="district" column="district"/>
+        <result property="procode" column="procode"/>
+        <result property="citycode" column="citycode"/>
+        <result property="adcode" column="adcode"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="supportChannel" column="support_channel"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="showStartDate" column="show_start_date"/>
+        <result property="showEndDate" column="show_end_date"/>
+        <result property="assignDate" column="assign_date"/>
+        <result property="weekDate" column="week_date"/>
+        <result property="sellTime" column="sell_time"/>
+        <result property="holiday" column="holiday"/>
+        <result property="shopImgs" column="shop_imgs"/>
+        <result property="shopLogo" column="shop_logo"/>
+        <result property="sort" column="sort"/>
+        <result property="shopTags" column="shop_tags"/>
+        <result property="shopType" column="shop_type"/>
+        <result property="extensionServiceProviderId" column="extension_service_provider_id"/>
+        <result property="pushType" column="push_type"/>
+        <result property="productType" column="product_type"/>
+        <result property="supplierShopId" column="supplier_shop_id"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="isShare" column="is_share"/>
+        <result property="supplier" column="supplier"/>
+        <result property="license" column="license"/>
+        <result property="nature" column="nature"/>
+        <result property="invoice" column="invoice"/>
+        <result property="account" column="account"/>
+        <result property="accountPayee" column="account_payee"/>
+        <result property="accountBank" column="account_bank"/>
+        <result property="accountPayee" column="account_payee"/>
+        <result property="productType" column="product_type"/>
+        <result property="activity" column="activity"/>
+        <result property="autoBusiness" column="auto_business"/>
+        <result property="examineVerifier" column="examine_verifier"/>
+    </resultMap>
+
+
+    <resultMap type="org.dromara.shopping.domain.vo.ShopVo" id="ShopVo">
+        <result property="shopId" column="shop_id"/>
+        <result property="commercialTenantId" column="commercial_tenant_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="shopTel" column="shop_tel"/>
+        <result property="businessHours" column="business_hours"/>
+        <result property="address" column="address"/>
+        <result property="status" column="status"/>
+        <result property="formattedAddress" column="formatted_address"/>
+        <result property="citycode" column="citycode"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="distance" column="distance"/>
+    </resultMap>
+
+    <resultMap type="org.dromara.shopping.domain.vo.ShopProductListVo" id="ShopProductResult">
+        <result property="shopId" column="shop_id"/>
+        <result property="commercialTenantId" column="commercial_tenant_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="shopTel" column="shop_tel"/>
+        <result property="businessHours" column="business_hours"/>
+        <result property="address" column="address"/>
+        <result property="formattedAddress" column="formatted_address"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="shopImgs" column="shop_imgs"/>
+        <result property="shopLogo" column="shop_logo"/>
+        <result property="shopTags" column="shop_tags"/>
+        <result property="sort" column="sort"/>
+        <result property="distance" column="distance"/>
+    </resultMap>
+    <resultMap type="org.dromara.shopping.domain.vo.AppProductListVo" id="AppProductResult">
+        <result property="shopId" column="shop_id"/>
+        <result property="commercialTenantId" column="commercial_tenant_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="sort" column="sort"/>
+        <result property="distance" column="distance"/>
+        <result property="columnType" column="column_type"/>
+    </resultMap>
+
+    <sql id="selectShop">
+        SELECT s.*,
+               ACOS(
+                   COS(RADIANS(#{bo.latitude})) *
+                   COS(RADIANS(latitude)) *
+                   COS(RADIANS(longitude) - RADIANS(#{bo.longitude})) +
+                   SIN(RADIANS(#{bo.latitude})) *
+                   SIN(RADIANS(latitude))
+               ) * 6378 AS distance
+        FROM t_shop s
+                 left join t_commercial_tenant ct on s.commercial_tenant_id = ct.commercial_tenant_id
+        WHERE s.STATUS = '0'
+          AND s.commercial_tenant_id IS NOT NULL
+          and ct.`status` = '0'
+    </sql>
+
+    <sql id="selectShopByProductId">
+        SELECT s.*,
+               ACOS(
+                   COS(RADIANS(#{bo.latitude})) *
+                   COS(RADIANS(latitude)) *
+                   COS(RADIANS(longitude) - RADIANS(#{bo.longitude})) +
+                   SIN(RADIANS(#{bo.latitude})) *
+                   SIN(RADIANS(latitude))
+               ) * 6378 AS distance
+        FROM t_shop s
+                 left join t_shop_product sp on s.shop_id = sp.shop_id
+        WHERE s.STATUS = '0'
+    </sql>
+
+    <select id="selectShopListByProductId" resultMap="ShopVo">
+        <include refid="selectShopByProductId"></include>
+        and sp.product_id = #{bo.productId}
+        <if test="bo.citycode != null and bo.citycode != ''">AND s.citycode =
+            #{bo.citycode}
+        </if>
+        <if test="bo.shopName != null and bo.shopName != ''">
+            AND (s.shop_name like concat('%', #{bo.shopName}, '%')
+            or s.address like concat('%', #{bo.shopName}, '%')
+            or s.formatted_address like concat('%', #{bo.shopName}, '%'))
+        </if>
+        ORDER BY distance
+    </select>
+
+    <select id="selectShopList" resultMap="ShopVo">
+        <include refid="selectShop"></include>
+        <if test="bo.commercialTenantId != null and bo.commercialTenantId != ''">AND s.commercial_tenant_id =
+            #{bo.commercialTenantId}
+        </if>
+        <if test="bo.citycode != null and bo.citycode != ''">AND s.citycode =
+            #{bo.citycode}
+        </if>
+        <if test="bo.shopName != null and bo.shopName != ''">
+            AND (s.shop_name like concat('%', #{bo.shopName}, '%')
+            or s.address like concat('%', #{bo.shopName}, '%')
+            or s.formatted_address like concat('%', #{bo.shopName}, '%'))
+        </if>
+        ORDER BY sort asc,distance asc
+    </select>
+
+    <select id="selectShopListByCommercialTenantId" resultMap="ShopVo">
+        <include refid="selectShop"></include>
+        <if test="bo.commercialTenantIds != null">
+            AND s.commercial_tenant_id in
+            <foreach collection="bo.commercialTenantIds" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="bo.citycode != null and bo.citycode != ''">
+            AND s.citycode = #{bo.citycode}
+        </if>
+        ORDER BY distance
+    </select>
+    <select id="queryPageList" resultType="org.dromara.shopping.domain.vo.ShopVo">
+        select a.*, ct.commercial_tenant_name commercialTenantName, ct.commercial_tenant_title commercialTenantTitle
+        from t_shop a left join t_business_district_shop bds on a.shop_id = bds.shop_id
+        left join t_commercial_tenant ct on a.commercial_tenant_id = ct.commercial_tenant_id
+        <where>
+            <if test="bo.commercialTenantId != null and bo.commercialTenantId != ''">
+                and a.commercial_tenant_id = #{bo.commercialTenantId}
+            </if>
+            <if test="bo.status != null and bo.status != ''">
+                and a.status = #{bo.status}
+            </if>
+            <if test="bo.examineVerifier != null and bo.examineVerifier != ''">
+                and a.examine_verifier = #{bo.examineVerifier}
+            </if>
+            <if test="bo.platformKey != null and bo.platformKey != ''">
+                and a.platform_key = #{bo.platformKey}
+            </if>
+            <if test="bo.supplier != null and bo.supplier != ''">
+                and a.supplier = #{bo.supplier}
+            </if>
+            <if test="bo.extensionServiceProviderId != null and bo.extensionServiceProviderId != ''">
+                and a.extension_service_provider_id = #{bo.extensionServiceProviderId}
+            </if>
+            <if test="bo.businessDistrictId != null and bo.businessDistrictId != ''">
+                and bds.business_district_id = #{bo.businessDistrictId}
+            </if>
+            <if test="bo.shopName != null and bo.shopName != ''">
+                and (a.shop_name like concat('%', #{bo.shopName}, '%')
+                or a.address like concat('%', #{bo.shopName}, '%')
+                or a.formatted_address like concat('%', #{bo.shopName}, '%'))
+            </if>
+            <if test="bo.province != null and bo.province != ''">
+                and (a.province like concat('%', #{bo.province}, '%')
+                or a.city like concat('%', #{bo.province}, '%')
+                or a.district like concat('%', #{bo.province}, '%'))
+            </if>
+            <if test="bo.commercialTenantIds != null and bo.commercialTenantIds.size > 0">
+                AND a.commercial_tenant_id in
+                <foreach collection="bo.commercialTenantIds" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bo.shopIds != null and bo.shopIds.size > 0">
+                AND a.shop_id in
+                <foreach collection="bo.shopIds" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bo.noShopIds != null and bo.noShopIds.size > 0">
+                AND a.shop_id not in
+                <foreach collection="bo.noShopIds" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        order by a.create_time desc
+    </select>
+
+
+    <select id="selectShopProductList" resultMap="ShopProductResult">
+        WITH
+        <if test="bo.categoryId != null and bo.categoryId > 0">
+            RECURSIVE category_tree AS (
+            SELECT category_id, parent_id
+            FROM t_category
+            WHERE parent_id = #{bo.categoryId} and platform_key = #{bo.platformKey} and status = '0' and del_flag = '0'
+            UNION ALL
+            SELECT c.category_id, c.parent_id
+            FROM t_category c
+            INNER JOIN category_tree ct ON c.parent_id = ct.category_id
+            WHERE c.platform_key = #{bo.platformKey} and c.status = '0' and c.del_flag = '0'
+            ),
+        </if>
+        cte_product AS (
+        SELECT
+        p.*
+        FROM
+        t_product p
+        <if test="bo.categoryId != null and bo.categoryId > 0">
+            LEFT JOIN t_category_product cp ON p.product_id = cp.product_id
+        </if>
+        WHERE
+        p.`status` = '0'
+        AND p.del_flag = '0'
+        AND p.search_status = '0'
+        AND p.search = '0'
+        AND p.show_index = '1'
+        AND ( p.show_start_date IS NULL OR p.show_start_date &lt; NOW() )
+        AND ( p.show_end_date IS NULL OR p.show_end_date &gt; NOW() )
+        AND ( p.platform_key IS NULL OR p.platform_key = #{bo.platformKey} )
+        <if test="bo.cityCode != null and bo.cityCode != ''">
+            AND ( p.show_city = 'ALL' OR p.show_city LIKE concat('%', #{bo.cityCode}, '%') )
+        </if>
+        <if test='bo.newFlag != null and bo.newFlag != "" and bo.newFlag == "1"'>
+            AND (  p.create_time &gt; TIMESTAMP(CURDATE(), '00:00:00') )
+        </if>
+
+        <if test="bo.categoryId != null and bo.categoryId > 0">
+            AND cp.category_id IN (
+            SELECT category_id
+            FROM category_tree
+            UNION ALL
+            SELECT category_id
+            FROM t_category
+            WHERE category_id = #{bo.categoryId}
+            )
+        </if>
+        ),
+        cte_shop AS (
+        SELECT
+        s.*,
+        ct.STATUS AS commercial_tenant_status
+        <if test="bo.latitude != null and bo.longitude != null">
+            ,ACOS(
+            COS(
+            RADIANS( #{bo.latitude} )) * COS(
+            RADIANS( latitude )) * COS(
+            RADIANS( longitude ) - RADIANS( #{bo.longitude} )) + SIN(
+            RADIANS( #{bo.latitude} )) * SIN(
+            RADIANS( latitude ))
+            ) * 6378 AS distance
+        </if>
+        FROM
+        t_shop s
+        LEFT JOIN t_shop_product sp ON s.shop_id = sp.shop_id
+        LEFT JOIN cte_product cp ON sp.product_id = cp.product_id
+        LEFT JOIN t_commercial_tenant ct ON s.commercial_tenant_id = ct.commercial_tenant_id
+        WHERE s.STATUS = '0'
+        AND (s.show_start_date IS NULL OR s.show_start_date &lt; NOW())
+        AND (s.show_end_date IS NULL OR s.show_end_date &gt; NOW())
+        <if test="bo.cityCode != null and bo.cityCode != ''">
+            AND s.citycode = #{bo.cityCode}
+        </if>
+        AND cp.product_id IS NOT NULL
+        )
+        SELECT * FROM (
+        SELECT d.* FROM (
+        SELECT b.commercial_tenant_id,
+        <if test="bo.latitude != null and bo.longitude != null">
+            min( b.distance ) distance
+        </if>
+        <if test="bo.latitude == null or bo.longitude == null">
+            max( b.shop_id ) shop_id
+        </if>
+        FROM
+        ( SELECT * FROM cte_shop WHERE commercial_tenant_id IS NOT NULL AND `commercial_tenant_status` = '0' ) b
+        GROUP BY
+        b.commercial_tenant_id
+        ) c
+        LEFT JOIN ( SELECT * FROM cte_shop WHERE commercial_tenant_id IS NOT NULL AND `commercial_tenant_status` =
+        '0' ) d ON c.commercial_tenant_id = d.commercial_tenant_id
+        <if test="bo.latitude != null and bo.longitude != null">
+            AND c.distance = d.distance
+        </if>
+        <if test="bo.latitude == null or bo.longitude == null">
+            AND c.shop_id = d.shop_id
+        </if>
+        GROUP BY
+        d.shop_id UNION ALL
+        SELECT
+        *
+        FROM
+        cte_shop
+        WHERE
+        commercial_tenant_id IS NULL
+        GROUP BY
+        shop_id
+        ) a
+        <if test='bo.orderByType == null or bo.orderByType != "1" or bo.latitude == null or bo.longitude == null'>
+            ORDER BY
+            a.sort,
+            a.shop_id DESC
+        </if>
+        <if test='bo.orderByType != null and bo.orderByType == "1" and bo.latitude != null and bo.longitude != null'>
+            ORDER BY
+            a.distance
+        </if>
+    </select>
+    <select id="selectProductGpList" resultMap="AppProductResult">
+        WITH
+        <if test="bo.categoryId != null and bo.categoryId > 0">
+            RECURSIVE category_tree AS (
+            SELECT category_id, parent_id
+            FROM t_category
+            WHERE parent_id = #{bo.categoryId} and platform_key = #{bo.platformKey} and status = '0' and del_flag = '0'
+            UNION ALL
+            SELECT c.category_id, c.parent_id
+            FROM t_category c
+            INNER JOIN category_tree ct ON c.parent_id = ct.category_id
+            WHERE c.platform_key = #{bo.platformKey} and c.status = '0' and c.del_flag = '0'
+            ),
+        </if>
+        cte_product AS (
+        SELECT
+        p.*,
+        CASE
+        WHEN ( original_amount &lt;= 0 OR sell_amount &lt;= 0 ) THEN
+        10.0
+        WHEN sell_amount > original_amount THEN
+        10 ELSE ( 10.0 * sell_amount / original_amount )
+        END AS discounted
+        FROM
+        t_product p
+        <if test="bo.categoryId != null and bo.categoryId > 0">
+            LEFT JOIN t_category_product cp ON p.product_id = cp.product_id
+        </if>
+        WHERE
+        p.`status` = '0'
+        AND p.del_flag = '0'
+        AND p.search_status = '0'
+        AND p.search = '0'
+        AND p.show_index = '1'
+        AND (p.support_channel = 'ALL' OR p.support_channel LIKE concat('%', #{bo.supportChannel}, '%'))
+        AND ( p.show_start_date IS NULL OR p.show_start_date &lt; NOW() )
+        AND ( p.show_end_date IS NULL OR p.show_end_date &gt; NOW() )
+        AND ( p.platform_key IS NULL OR p.platform_key = #{bo.platformKey} )
+        <if test="platformSupplierVos != null and platformSupplierVos.size > 0" >
+        AND <foreach collection="platformSupplierVos" item="item" open="(" separator=" or " close=")">
+            (
+            p.supplier = #{item.supplierId}
+            <if test="item.productMinPrice != null and item.productMinPrice >= 0">
+                AND p.sell_amount &gt;= #{item.productMinPrice}
+            </if>
+            <if test="item.productMaxPrice != null and item.productMaxPrice > 0">
+                AND p.sell_amount &lt;= #{item.productMaxPrice}
+            </if>
+            <if test="item.productMinRate != null and item.productMinRate > 0">
+                AND p.profit_margin &gt;= #{item.productMinRate}
+            </if>
+            )
+            </foreach>
+        </if>
+        <if test="bo.cityCode != null and bo.cityCode != ''">
+            AND ( p.show_city = 'ALL' OR p.show_city LIKE concat('%', #{bo.cityCode}, '%') )
+        </if>
+        <if test='bo.newFlag != null and bo.newFlag != "" and bo.newFlag == "1"'>
+            AND ( p.create_time &gt; TIMESTAMP(CURDATE(), '00:00:00') )
+        </if>
+        <if test="bo.categoryId != null and bo.categoryId > 0">
+            AND cp.category_id IN (
+            SELECT category_id
+            FROM category_tree
+            UNION ALL
+            SELECT category_id
+            FROM t_category
+            WHERE category_id = #{bo.categoryId}
+            )
+        </if>
+        ),
+        cte_shop AS (
+        SELECT
+        s.*,
+        ct.STATUS AS commercial_tenant_status,
+        '0' as column_type,
+        cp.sell_amount,
+        cp.discounted
+        <if test="bo.latitude != null and bo.longitude != null">
+            ,ACOS(
+            COS(
+            RADIANS( #{bo.latitude} )) * COS(
+            RADIANS( latitude )) * COS(
+            RADIANS( longitude ) - RADIANS( #{bo.longitude} )) + SIN(
+            RADIANS( #{bo.latitude} )) * SIN(
+            RADIANS( latitude ))
+            ) * 6378 AS distance
+        </if>
+        FROM
+        t_shop s
+        LEFT JOIN t_shop_product sp ON s.shop_id = sp.shop_id
+        LEFT JOIN cte_product cp ON sp.product_id = cp.product_id
+        LEFT JOIN t_commercial_tenant ct ON s.commercial_tenant_id = ct.commercial_tenant_id
+        WHERE s.STATUS = '0'
+        AND (s.show_start_date IS NULL OR s.show_start_date &lt; NOW())
+        AND (s.show_end_date IS NULL OR s.show_end_date &gt; NOW())
+        <if test="bo.cityCode != null and bo.cityCode != ''">
+            AND s.citycode = #{bo.cityCode}
+        </if>
+        AND cp.product_id IS NOT NULL
+        )
+        SELECT * FROM (
+        SELECT d.shop_id,d.commercial_tenant_id,d.shop_name,
+        <if test="bo.latitude != null and bo.longitude != null">
+            d.distance,
+        </if>
+        d.sell_amount,
+        d.discounted,
+        d.sort,d.column_type FROM (
+        SELECT b.commercial_tenant_id,
+        <if test="bo.latitude != null and bo.longitude != null">
+            min( b.distance ) distance
+        </if>
+        <if test="bo.latitude == null or bo.longitude == null">
+            max( b.shop_id ) shop_id
+        </if>
+        FROM
+        ( SELECT * FROM cte_shop WHERE commercial_tenant_id IS NOT NULL AND `commercial_tenant_status` = '0' ) b
+        GROUP BY
+        b.commercial_tenant_id
+        ) c
+        LEFT JOIN ( SELECT * FROM cte_shop WHERE commercial_tenant_id IS NOT NULL AND `commercial_tenant_status` =
+        '0' ) d ON c.commercial_tenant_id = d.commercial_tenant_id
+        <if test="bo.latitude != null and bo.longitude != null">
+            AND c.distance = d.distance
+        </if>
+        <if test="bo.latitude == null or bo.longitude == null">
+            AND c.shop_id = d.shop_id
+        </if>
+        GROUP BY
+        d.shop_id
+        UNION ALL
+        SELECT
+        shop_id,commercial_tenant_id,shop_name,
+        <if test="bo.latitude != null and bo.longitude != null">
+            distance,
+        </if>
+        sell_amount,
+        discounted,
+        sort,column_type
+        FROM
+        cte_shop
+        WHERE
+        commercial_tenant_id IS NULL
+        GROUP BY
+        shop_id
+        UNION ALL
+        select cp.product_id,null as commercial_tenant_id,cp.product_name,
+        <if test="bo.latitude != null and bo.longitude != null">
+            1000000 as distance,
+        </if>
+        cp.sell_amount,
+        cp.discounted,
+        cp.sort,'1' as column_type
+        from cte_product cp left join t_shop_product sp on cp.product_id = sp.product_id where sp.shop_id is null
+        ) a
+        <if test='bo.orderByType == null and bo.orderByType != "1" and bo.orderByType != "2" and bo.orderByType != "3" '>
+            ORDER BY
+            a.sort,
+            a.column_type,
+            a.shop_id DESC
+        </if>
+        <if test='bo.orderByType != null and bo.orderByType == "1" and bo.latitude != null and bo.longitude != null'>
+            ORDER BY
+            a.distance,
+            a.sort,
+            a.column_type,
+            a.shop_id DESC
+        </if>
+        <if test='bo.orderByType != null and bo.orderByType == "2"'>
+            ORDER BY
+            a.discounted,
+            a.sort,
+            a.column_type,
+            a.shop_id DESC
+        </if>
+        <if test='bo.orderByType != null and bo.orderByType == "3"'>
+            ORDER BY
+            a.sell_amount,
+            a.sort,
+            a.column_type,
+            a.shop_id DESC
+        </if>
+
+
+    </select>
+    <select id="selectShopPageList" resultType="org.dromara.shopping.domain.vo.ShopVo">
+        select *
+        from t_shop
+        <where>
+            status = '0'
+            <if test="bo.examineVerifier != null and bo.examineVerifier != ''">
+                and examine_verifier = #{bo.examineVerifier}
+            </if>
+            <if test="bo.procode != null and bo.procode != ''">
+                and procode = #{bo.procode}
+            </if>
+            <if test="bo.citycode != null and bo.citycode != ''">
+                and citycode = #{bo.citycode}
+            </if>
+            <if test="bo.adcode != null and bo.adcode != ''">
+                and adcode = #{bo.adcode}
+            </if>
+            <if test="bo.beginDate != null and bo.beginDate != '' and bo.endDate != null and bo.endDate != ''">
+                and create_time between #{bo.beginDate} and #{bo.endDate}
+            </if>
+            <if test="bo.commercialTenantIds != null and bo.commercialTenantIds.size > 0">
+                and commercial_tenant_id in
+                <foreach collection="bo.commercialTenantIds" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

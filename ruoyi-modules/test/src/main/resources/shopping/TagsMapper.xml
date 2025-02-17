@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.TagsMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Tags" id="TagsResult">
+    <result property="tagsId" column="tags_id"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="tagsName" column="tags_name"/>
+    <result property="tagsType" column="tags_type"/>
+    </resultMap>
+
+
+</mapper>

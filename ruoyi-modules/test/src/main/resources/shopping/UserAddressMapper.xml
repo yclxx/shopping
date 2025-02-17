@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.UserAddressMapper">
+
+    <resultMap type="org.dromara.shopping.domain.UserAddress" id="UserAddressResult">
+    <result property="userAddressId" column="user_address_id"/>
+    <result property="userId" column="user_id"/>
+    <result property="name" column="name"/>
+    <result property="tel" column="tel"/>
+    <result property="isDefault" column="is_default"/>
+    <result property="address" column="address"/>
+    <result property="areaId" column="area_id"/>
+    <result property="addressInfo" column="address_info"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="createBy" column="create_by"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+
+</mapper>

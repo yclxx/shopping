@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.SupplierMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Supplier" id="SupplierResult">
+    <result property="supplierId" column="supplier_id"/>
+    <result property="supplierName" column="supplier_name"/>
+    <result property="supplierAddress" column="supplier_address"/>
+    <result property="corporateAccount" column="corporate_account"/>
+    <result property="linkman" column="linkman"/>
+    <result property="mobile" column="mobile"/>
+    <result property="contractDate" column="contract_date"/>
+    <result property="invoiceType" column="invoice_type"/>
+    <result property="warning" column="warning"/>
+    <result property="warningAmount" column="warning_amount"/>
+    <result property="status" column="status"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="remark" column="remark"/>
+    <result property="warningEmail" column="warning_email"/>
+    <result property="serviceUrl" column="service_url"/>
+    <result property="corpId" column="corp_id"/>
+    <result property="supplierType" column="supplier_type"/>
+        <result property="businessLicense" column="business_license"/>
+        <result property="headUrl" column="head_url"/>
+        <result property="backUrl" column="back_url"/>
+        <result property="settlementAccount" column="settlement_account"/>
+        <result property="agreement" column="agreement"/>
+        <result property="supplierImage" column="supplier_image"/>
+        <result property="supplierShortName" column="supplier_short_name" />
+        <result property="productPrice" column="product_price"/>
+    </resultMap>
+
+
+</mapper>

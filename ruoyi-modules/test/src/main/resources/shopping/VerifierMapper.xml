@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.VerifierMapper">
+    <resultMap type="org.dromara.shopping.domain.Verifier" id="VerifierResult">
+        <result property="id" column="id"/>
+        <result property="platformKey" column="platform_key"/>
+        <result property="mobile" column="mobile"/>
+        <result property="status" column="status"/>
+        <result property="openId" column="open_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="loginIp" column="login_ip"/>
+        <result property="loginDate" column="login_date"/>
+        <result property="lastLoginDate" column="last_login_date"/>
+        <result property="reloadUser" column="reload_user"/>
+        <result property="sysDeptId" column="sys_dept_id"/>
+        <result property="sysUserId" column="sys_user_id"/>
+        <result property="isBd" column="is_bd"/>
+        <result property="isAdmin" column="is_admin"/>
+        <result property="isVerifier" column="is_verifier"/>
+        <result property="cityCode" column="city_code"/>
+        <result property="org" column="org"/>
+        <result property="contract" column="contract"/>
+        <result property="isBd" column="is_bd"/>
+        <result property="isAdmin" column="is_admin"/>
+        <result property="isVerifier" column="is_verifier"/>
+        <result property="cityCode" column="city_code"/>
+        <result property="org" column="org"/>
+        <result property="contract" column="contract"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="district" column="district"/>
+        <result property="procode" column="procode"/>
+        <result property="citycode" column="citycode"/>
+        <result property="adcode" column="adcode"/>
+    </resultMap>
+
+    <select id="selectOneIncludeMobile" resultMap="VerifierResult">
+        SELECT *
+        FROM t_verifier ${ew.customSqlSegment} and mobile = #{user.mobile}
+        limit 1
+    </select>
+
+    <select id="selectPageIncludeMobile" resultMap="VerifierResult">
+        SELECT * FROM t_verifier ${ew.customSqlSegment}
+        <if test="user != null and user.mobile != null and user.mobile != ''">
+            and mobile = #{user.mobile}
+        </if>
+    </select>
+
+    <select id="selectListIncludeMobile" resultMap="VerifierResult">
+        SELECT * FROM t_verifier ${ew.customSqlSegment}
+        <if test="user != null and user.mobile != null and user.mobile != ''">
+            and mobile = #{user.mobile}
+        </if>
+    </select>
+    <select id="selectByMobile" resultMap="VerifierResult">
+        SELECT *
+        FROM t_verifier
+        WHERE
+        mobile = #{mobile}
+        limit 1
+    </select>
+</mapper>

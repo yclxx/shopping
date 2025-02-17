@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.UnionpayMissionUserLogMapper">
+
+    <resultMap type="org.dromara.shopping.domain.UnionpayMissionUserLog" id="UnionpayMissionUserLogResult">
+    <result property="upMissionUserLog" column="up_mission_user_log"/>
+    <result property="upMissionUserId" column="up_mission_user_id"/>
+    <result property="upMissionGroupId" column="up_mission_group_id"/>
+    <result property="upMissionId" column="up_mission_id"/>
+    <result property="productId" column="product_id"/>
+    <result property="status" column="status"/>
+    <result property="account" column="account"/>
+    <result property="sendTime" column="send_time"/>
+    <result property="amount" column="amount"/>
+    <result property="sendCount" column="send_count"/>
+    <result property="failReason" column="fail_reason"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="number" column="number"/>
+    </resultMap>
+    <select id="selectListByWeek" resultType="java.lang.Long">
+        select count(*)
+        from t_unionpay_mission_user_log
+        <where>
+            del_flag = '0'
+            <if test="bo.upMissionUserId != null and bo.upMissionUserId != ''">
+                and up_mission_user_id = #{bo.upMissionUserId}
+            </if>
+            <if test="bo.upMissionGroupId != null and bo.upMissionGroupId != ''">
+                and up_mission_group_id = #{bo.upMissionGroupId}
+            </if>
+            <if test="bo.upMissionId != null and bo.upMissionId != ''">
+                and up_mission_id = #{bo.upMissionId}
+            </if>
+            and YEARWEEK(create_time, 1) = YEARWEEK(CURDATE(), 1)
+        </where>
+    </select>
+    <select id="selectListByToday" resultType="java.lang.Long">
+        select count(*)
+        from t_unionpay_mission_user_log
+        <where>
+            del_flag = '0'
+            <if test="bo.upMissionUserId != null and bo.upMissionUserId != ''">
+                and up_mission_user_id = #{bo.upMissionUserId}
+            </if>
+            <if test="bo.upMissionGroupId != null and bo.upMissionGroupId != ''">
+                and up_mission_group_id = #{bo.upMissionGroupId}
+            </if>
+            <if test="bo.upMissionId != null and bo.upMissionId != ''">
+                and up_mission_id = #{bo.upMissionId}
+            </if>
+            and DATE(create_time) = CURDATE()
+        </where>
+    </select>
+
+
+</mapper>

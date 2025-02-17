@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.YsfConfigMapper">
+    <resultMap type="org.dromara.shopping.domain.YsfConfig" id="YsfConfigResult">
+        <result property="configId" column="config_id"/>
+        <result property="platformId" column="platform_id"/>
+        <result property="configName" column="config_name"/>
+        <result property="configKey" column="config_key"/>
+        <result property="configValue" column="config_value"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <select id="queryValueByKey" resultType="java.lang.String">
+        SELECT config_value FROM t_ysf_config WHERE config_key = #{key} AND platform_id = #{platformId}
+    </select>
+
+    <select id="queryValueByKeys" resultType="java.lang.String">
+        SELECT
+        config_value
+        FROM
+        t_ysf_config
+        WHERE
+        config_key = #{key}
+        AND is_all = 1
+        ORDER BY
+        create_time DESC
+        LIMIT 1
+    </select>
+</mapper>

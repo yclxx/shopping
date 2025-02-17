@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.SettlementMapper">
+
+    <resultMap type="org.dromara.shopping.domain.Settlement" id="SettlementResult">
+    <result property="settlementId" column="settlement_id"/>
+    <result property="reconciliationName" column="reconciliation_name"/>
+    <result property="platformKey" column="platform_key"/>
+    <result property="activityId" column="activity_id"/>
+    <result property="settlementMyFile" column="settlement_my_file"/>
+    <result property="startTime" column="start_time"/>
+    <result property="endTime" column="end_time"/>
+    <result property="settlementTime" column="settlement_time"/>
+    <result property="settlementAmount" column="settlement_amount"/>
+    <result property="serviceRate" column="service_rate"/>
+    <result property="serviceAmount" column="service_amount"/>
+    <result property="status" column="status"/>
+    <result property="remark" column="remark"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="settlementType" column="settlement_type"/>
+    </resultMap>
+
+
+</mapper>

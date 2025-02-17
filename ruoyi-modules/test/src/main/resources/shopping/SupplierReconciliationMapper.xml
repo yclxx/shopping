@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.SupplierReconciliationMapper">
+
+    <resultMap type="org.dromara.shopping.domain.SupplierReconciliation" id="SupplierReconciliationResult">
+    <result property="reconciliationId" column="reconciliation_id"/>
+    <result property="reconciliationName" column="reconciliation_name"/>
+    <result property="supplierId" column="supplier_id"/>
+    <result property="startTime" column="start_time"/>
+    <result property="endTime" column="end_time"/>
+    <result property="amount" column="amount"/>
+    <result property="settlementTime" column="settlement_time"/>
+    <result property="status" column="status"/>
+    <result property="remark" column="remark"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectOrderList" resultType="org.dromara.shopping.domain.vo.SupplierReconciliationDataVo">
+        SELECT * FROM t_order WHERE del_flag = 0 and `status` = 2 and send_status = 2 and supplier_settle = 0
+        and create_time &gt;= #{bo.startTime} and create_time &lt;= #{bo.endTime} and supplier = #{bo.supplierId}
+        UNION ALL
+        SELECT * FROM t_history_order WHERE del_flag = 0 and `status` = 2 and send_status = 2 and supplier_settle = 0
+        and create_time &gt;= #{bo.startTime} and create_time &lt;= #{bo.endTime} and supplier = #{bo.supplierId}
+    </select>
+
+    <select id="getOrderAmount" resultType="BigDecimal">
+        SELECT COALESCE(sum(item_price), 0) FROM (
+        SELECT * FROM t_order WHERE del_flag = 0 and `status` = 2 and send_status = 2 and supplier_settle = 0 and
+        create_time &gt;= #{bo.startTime} and create_time &lt;= #{bo.endTime} and supplier = #{bo.supplierId}
+        <if test="bo.numbers != null and bo.numbers.length > 0">
+            and number not in
+            <foreach collection="bo.numbers" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        UNION ALL
+        SELECT *  FROM t_history_order WHERE del_flag = 0 and `status` = 2 and send_status = 2 and supplier_settle = 0
+        and create_time &gt;= #{bo.startTime} and create_time &lt;= #{bo.endTime} and supplier = #{bo.supplierId}
+        <if test="bo.numbers != null and bo.numbers.length > 0">
+            and number not in
+            <foreach collection="bo.numbers" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>) a
+    </select>
+
+    <select id="getSupplierOrderList" resultType="org.dromara.shopping.domain.vo.SupplierReconciliationDataVo">
+        SELECT * FROM t_order WHERE del_flag = 0 and `status` = 2 and send_status = 2 and supplier_settle = 0 and
+        create_time &gt;= #{bo.startTime} and create_time &lt;= #{bo.endTime} and supplier = #{bo.supplierId}
+        <if test="bo.numbers != null and bo.numbers.length > 0">
+            and number not in
+            <foreach collection="bo.numbers" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        UNION ALL
+        SELECT *  FROM t_history_order WHERE del_flag = 0 and `status` = 2 and send_status = 2 and supplier_settle = 0
+        and create_time &gt;= #{bo.startTime} and create_time &lt;= #{bo.endTime} and supplier = #{bo.supplierId}
+        <if test="bo.numbers != null and bo.numbers.length > 0">
+            and number not in
+            <foreach collection="bo.numbers" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+</mapper>

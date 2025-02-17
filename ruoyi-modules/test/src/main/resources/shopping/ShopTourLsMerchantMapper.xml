@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.ShopTourLsMerchantMapper">
+
+    <resultMap type="org.dromara.shopping.domain.ShopTourLsMerchant" id="ShopTourLsMerchantResult">
+    <result property="tourMerchantLsId" column="tour_merchant_ls_id"/>
+    <result property="tourId" column="tour_id"/>
+    <result property="tourLogId" column="tour_log_id"/>
+    <result property="verifierId" column="verifier_id"/>
+    <result property="shopId" column="shop_id"/>
+    <result property="merchantNo" column="merchant_no"/>
+    <result property="oldMerchantNo" column="old_merchant_no"/>
+    <result property="merchantType" column="merchant_type"/>
+    <result property="paymentMethod" column="payment_method"/>
+    <result property="acquirer" column="acquirer"/>
+    <result property="terminalNo" column="terminal_no"/>
+    <result property="merchantImg" column="merchant_img"/>
+    <result property="ycMerchant" column="yc_merchant"/>
+    <result property="isUpdate" column="is_update"/>
+    <result property="delFlag" column="del_flag"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

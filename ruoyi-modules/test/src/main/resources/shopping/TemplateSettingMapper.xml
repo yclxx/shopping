@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dromara.shopping.mapper.TemplateSettingMapper">
+
+    <resultMap type="org.dromara.shopping.domain.TemplateSetting" id="TemplateSettingResult">
+    <result property="id" column="id"/>
+    <result property="templateId" column="template_id"/>
+    <result property="img" column="img"/>
+    <result property="btn" column="btn"/>
+    <result property="toType" column="to_type"/>
+    <result property="appId" column="app_id"/>
+    <result property="url" column="url"/>
+    <result property="sort" column="sort"/>
+    <result property="width" column="width"/>
+    <result property="parentId" column="parent_id"/>
+    <result property="createBy" column="create_by"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateBy" column="update_by"/>
+    <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>
