@@ -1,8 +1,8 @@
 package org.dromara.shopping.domain.vo;
 
-import com.ruoyi.common.core.annotation.Sensitive;
-import com.ruoyi.common.core.enums.SensitiveStrategy;
 import lombok.Data;
+import org.dromara.common.sensitive.annotation.Sensitive;
+import org.dromara.common.sensitive.core.SensitiveStrategy;
 
 /**
  * @author 25487

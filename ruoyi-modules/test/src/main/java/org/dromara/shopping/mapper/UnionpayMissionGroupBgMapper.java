@@ -1,5 +1,6 @@
 package org.dromara.shopping.mapper;
 
+import org.dromara.common.mybatis.core.mapper.BaseMapperPlus;
 import org.dromara.shopping.domain.UnionpayMissionGroupBg;
 import org.dromara.shopping.domain.vo.UnionpayMissionGroupBgVo;
 

@@ -3,10 +3,8 @@ package org.dromara.shopping.domain.vo;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;
-import org.dromara.common.core.utils.SpringUtils;
 import org.dromara.common.excel.annotation.ExcelDictFormat;
 import org.dromara.common.excel.convert.ExcelDictConvert;
-import org.dromara.common.satoken.utils.LoginHelper;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -582,124 +580,4 @@ public class ProductVo implements Serializable {
         }
     }
 
-    public BigDecimal getRealShareOneAmount() {
-        return getRealShareOneAmount(null, null);
-    }
-
-    public BigDecimal getRealShareOneAmount(Long platformId, Long shareUserId) {
-        if (StringUtils.isNotBlank(this.shareAmountType) && !"0".equals(this.shareAmountType)) {
-            BigDecimal ratio = null;
-            if (null != shareUserId && shareUserId > 0) {
-                ShareUserVo shareUserVo = queryShareUserVoById(shareUserId);
-                if (null != shareUserVo && "1".equals(shareUserVo.getShareAmountType()) && null != shareUserVo.getPassivityShareAmount()) {
-                    ratio = shareUserVo.getPassivityShareAmount();
-                }
-            }
-            if (null == ratio) {
-                ratio = new BigDecimal("0");
-                if ("1".equals(this.shareAmountType) && null != this.shareOneAmount && this.shareOneAmount.signum() > 0) {
-                    ratio = this.shareOneAmount;
-                } else if ("2".equals(this.shareAmountType)) {
-                    if (null == platformId) {
-                        try {
-                            platformId = ZlyyhUtils.getPlatformId();
-                        } catch (Exception ignored) {
-                            // 不是servlet 环境，取不到平台id，忽略报错
-                        }
-                    }
-                    ratio = PlatformUtils.getPlatformShareOneRatio(platformId);
-
-                }
-            }
-            String platformShareAmountType = PlatformUtils.getShareAmountType(platformId);
-
-            BigDecimal shareAmount = getShareAmount(ratio, platformShareAmountType);
-            if (null != shareAmount) {
-                return shareAmount;
-            }
-        }
-        return this.shareOneAmount;
-    }
-
-    public BigDecimal getRealShareTwoAmount() {
-        return getRealShareTwoAmount(null, null);
-    }
-
-    public BigDecimal getRealShareTwoAmount(Long platformId, Long shareUserId) {
-        if (StringUtils.isNotBlank(this.shareAmountType) && !"0".equals(this.shareAmountType)) {
-            if (null == shareUserId) {
-                try {
-                    shareUserId = LoginHelper.getUserId();
-                } catch (Exception ignored) {
-                    // 用户未登录获取不到用户ID，忽略报错
-                }
-            }
-
-            BigDecimal ratio = null;
-            if (null != shareUserId && shareUserId > 0) {
-                ShareUserVo shareUserVo = queryShareUserVoById(shareUserId);
-                if (null != shareUserVo && "1".equals(shareUserVo.getShareAmountType()) && null != shareUserVo.getShareAmount()) {
-                    ratio = shareUserVo.getShareAmount();
-                }
-            }
-
-            if (null == ratio) {
-                ratio = new BigDecimal("0");
-                if ("1".equals(this.shareAmountType) && null != this.shareTwoAmount && this.shareTwoAmount.signum() > 0) {
-                    ratio = this.shareTwoAmount;
-                } else if ("2".equals(this.shareAmountType)) {
-                    if (null == platformId) {
-                        try {
-                            platformId = ZlyyhUtils.getPlatformId();
-                        } catch (Exception ignored) {
-                            // 不是servlet 环境，取不到平台id，忽略报错
-                        }
-                    }
-                    ratio = PlatformUtils.getPlatformShareTwoRatio(platformId);
-                }
-            }
-            String platformShareAmountType = PlatformUtils.getShareAmountType(platformId);
-
-            BigDecimal shareAmount = getShareAmount(ratio, platformShareAmountType);
-            if (null != shareAmount) {
-                return shareAmount;
-            }
-        }
-        return this.shareTwoAmount;
-    }
-
-    private BigDecimal getShareAmount(BigDecimal ratio, String platformShareAmountType) {
-        if (ratio.signum() > 0) {
-            if ("0".equals(platformShareAmountType)) {
-                // 计算利润
-                if (null == this.itemPrice) {
-                    return BigDecimal.ZERO;
-                }
-                BigDecimal profit = this.sellAmount.subtract(this.itemPrice);
-                if (profit.signum() > 0) {
-                    // 计算分佣费用，四舍五入
-                    return profit.multiply(ratio).setScale(2, RoundingMode.HALF_UP);
-                } else {
-                    return BigDecimal.ZERO;
-                }
-            } else if ("1".equals(platformShareAmountType)) {
-                // 销售价
-                if (null != this.sellAmount && this.sellAmount.signum() > 0) {
-                    // 计算分佣费用，四舍五入
-                    return this.sellAmount.multiply(ratio).setScale(2, RoundingMode.HALF_UP);
-                }
-                return BigDecimal.ZERO;
-            }
-        }
-        return BigDecimal.ZERO;
-    }
-
-    private ShareUserVo queryShareUserVoById(Long shareUserId) {
-        try {
-            return SpringUtils.getBean(BaseShareUserService.class).queryById(shareUserId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

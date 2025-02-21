@@ -2,9 +2,9 @@ package org.dromara.shopping.domain.vo;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.ruoyi.common.core.annotation.Sensitive;
-import com.ruoyi.common.core.enums.SensitiveStrategy;
 import lombok.Data;
+import org.dromara.common.sensitive.annotation.Sensitive;
+import org.dromara.common.sensitive.core.SensitiveStrategy;
 
 /**
  * 观影用户信息视图对象

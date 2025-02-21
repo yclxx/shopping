@@ -2,10 +2,10 @@ package org.dromara.shopping.domain;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.dromara.common.mybatis.core.domain.BaseEntity;
-import com.ruoyi.common.encrypt.annotation.EncryptField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.dromara.common.encrypt.annotation.EncryptField;
+import org.dromara.common.mybatis.core.domain.BaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;

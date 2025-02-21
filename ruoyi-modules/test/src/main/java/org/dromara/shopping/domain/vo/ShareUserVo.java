@@ -2,11 +2,11 @@ package org.dromara.shopping.domain.vo;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.ruoyi.common.core.annotation.Sensitive;
-import com.ruoyi.common.core.enums.SensitiveStrategy;
+import lombok.Data;
 import org.dromara.common.excel.annotation.ExcelDictFormat;
 import org.dromara.common.excel.convert.ExcelDictConvert;
-import lombok.Data;
+import org.dromara.common.sensitive.annotation.Sensitive;
+import org.dromara.common.sensitive.core.SensitiveStrategy;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -117,7 +117,7 @@ public class ShareUserVo {
     /**
      * 姓名
      */
-    @Sensitive(strategy = SensitiveStrategy.NAME)
+    @Sensitive(strategy = SensitiveStrategy.CHINESE_NAME)
     @ExcelProperty(value = "姓名")
     private String userName;
 
