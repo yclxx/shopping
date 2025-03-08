@@ -65,7 +65,7 @@ public class ActionController extends BaseController {
      */
     @SaCheckPermission("zlyyh:action:query")
     @GetMapping("/{actionId}")
-    public R<ActionVo> getInfo(@NotNull(message = "主键不能为空") @PathVariable Long actionId) {
+    public R<ActionVo> getInfo(@PathVariable Long actionId) {
         return R.ok(actionService.queryById(actionId));
     }
 
@@ -108,7 +108,7 @@ public class ActionController extends BaseController {
     @SaCheckPermission("zlyyh:action:remove")
     @Log(title = "优惠券批次", businessType = BusinessType.DELETE)
     @DeleteMapping("/{actionIds}")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空") @PathVariable Long[] actionIds) {
+    public R<Void> remove(@PathVariable Long[] actionIds) {
         return toAjax(actionService.deleteWithValidByIds(Arrays.asList(actionIds), true));
     }
 }
