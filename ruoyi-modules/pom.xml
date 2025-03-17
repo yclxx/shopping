@@ -17,7 +17,7 @@
         <module>ruoyi-workflow</module>
         <module>shopping-admin</module>
         <module>shopping-mobile</module>
-        <module>test</module>
+        <module>shopping-meiyouyong</module>
         <module>boss</module>
     </modules>
 
